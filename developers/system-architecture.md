@@ -1,5 +1,4 @@
 ---
-icon: sitemap
 ---
 
 # System Architecture

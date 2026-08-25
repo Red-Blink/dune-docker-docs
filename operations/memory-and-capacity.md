@@ -1,5 +1,4 @@
 ---
-icon: memory
 ---
 
 # Memory and Map Capacity

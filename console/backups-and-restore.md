@@ -1,5 +1,4 @@
 ---
-icon: box-archive
 ---
 
 # Backups and Restore

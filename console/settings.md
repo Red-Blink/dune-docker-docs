@@ -1,5 +1,4 @@
 ---
-icon: gear
 ---
 
 # Settings and Access

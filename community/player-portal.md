@@ -1,5 +1,4 @@
 ---
-icon: user-shield
 ---
 
 # Player Portal and Privacy

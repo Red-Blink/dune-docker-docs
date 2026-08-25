@@ -1,5 +1,4 @@
 ---
-icon: discord
 ---
 
 # Discord Integration

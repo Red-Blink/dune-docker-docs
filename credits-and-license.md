@@ -1,5 +1,4 @@
 ---
-icon: heart
 ---
 
 # Credits and License

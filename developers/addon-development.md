@@ -1,5 +1,4 @@
 ---
-icon: puzzle-piece
 ---
 
 # Addon Development

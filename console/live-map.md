@@ -1,5 +1,4 @@
 ---
-icon: location-dot
 ---
 
 # Live Map

@@ -1,5 +1,4 @@
 ---
-icon: key
 ---
 
 # API Authentication and Safety

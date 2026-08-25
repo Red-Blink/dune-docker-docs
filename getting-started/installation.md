@@ -1,5 +1,4 @@
 ---
-icon: download
 ---
 
 # Installation

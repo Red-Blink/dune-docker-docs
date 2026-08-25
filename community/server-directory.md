@@ -1,5 +1,4 @@
 ---
-icon: globe
 ---
 
 # Public Server Directory

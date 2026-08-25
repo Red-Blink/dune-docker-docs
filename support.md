@@ -1,5 +1,4 @@
 ---
-icon: life-ring
 ---
 
 # Help, Issues, and Requests

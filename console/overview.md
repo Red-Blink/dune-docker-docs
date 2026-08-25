@@ -1,5 +1,4 @@
 ---
-icon: gauge-high
 ---
 
 # Console Overview

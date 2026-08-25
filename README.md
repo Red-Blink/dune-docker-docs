@@ -1,6 +1,5 @@
 ---
 description: Install, operate, and extend Dune Docker Console for Dune: Awakening dedicated servers.
-icon: desert
 layout:
   width: wide
   tableOfContents:

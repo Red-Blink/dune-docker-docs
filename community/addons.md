@@ -1,5 +1,4 @@
 ---
-icon: puzzle-piece
 ---
 
 # Community Addons

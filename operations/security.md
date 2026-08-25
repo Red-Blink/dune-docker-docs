@@ -1,5 +1,4 @@
 ---
-icon: shield-halved
 ---
 
 # Security

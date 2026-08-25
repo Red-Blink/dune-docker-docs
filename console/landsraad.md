@@ -1,5 +1,4 @@
 ---
-icon: landmark
 ---
 
 # Landsraad

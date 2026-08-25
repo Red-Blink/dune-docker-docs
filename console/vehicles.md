@@ -1,5 +1,4 @@
 ---
-icon: car
 ---
 
 # Vehicles

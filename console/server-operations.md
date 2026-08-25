@@ -1,5 +1,4 @@
 ---
-icon: server
 ---
 
 # Server Control, Logs, and Health

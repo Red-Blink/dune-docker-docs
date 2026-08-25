@@ -1,5 +1,4 @@
 ---
-icon: arrows-rotate
 ---
 
 # Updates and QA Builds

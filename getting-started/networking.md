@@ -1,5 +1,4 @@
 ---
-icon: network-wired
 ---
 
 # Networking and Ports

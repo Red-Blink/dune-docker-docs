@@ -1,5 +1,4 @@
 ---
-icon: list-check
 ---
 
 # Requirements

@@ -1,5 +1,4 @@
 ---
-icon: users
 ---
 
 # Players and Guilds

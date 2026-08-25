@@ -1,5 +1,4 @@
 ---
-icon: diagram-project
 ---
 
 # Multiple Servers on One IP

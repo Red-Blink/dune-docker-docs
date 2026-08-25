@@ -1,5 +1,4 @@
 ---
-icon: rocket-launch
 ---
 
 # First Run

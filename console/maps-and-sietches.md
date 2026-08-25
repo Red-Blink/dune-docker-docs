@@ -1,5 +1,4 @@
 ---
-icon: map
 ---
 
 # Maps, Sietches, and Deep Desert

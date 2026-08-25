@@ -1,5 +1,4 @@
 ---
-icon: calendar-check
 ---
 
 # Day-to-Day Operations

@@ -1,5 +1,4 @@
 ---
-icon: buildings
 ---
 
 # Bases and Land Claims

@@ -1,5 +1,4 @@
 ---
-icon: brackets-curly
 ---
 
 # Console HTTP API
