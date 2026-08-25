@@ -102,10 +102,11 @@ match the roles configured on the Discord bot side.
 - **Output sanitization** — removes internal IPs, credentials, connection strings
 - **No write access** — all routes are read-only
 
-## Companion Bot
+## Companion Bot Integration
 
-This adapter is designed to work with the [Dune Discord Bot](https://github.com/yacketrj/dune-awakening-selfhost-discordbot),
-which provides 25 slash commands organized into 6 groups:
+This adapter supports companion Discord bots that implement the protected
+[Discord API Adapter Contract](../discord-control-bot/api-adapter-contract.md).
+The reference command surface contains 25 slash commands organized into 6 groups:
 
 | Group | Commands |
 |-------|----------|
@@ -116,9 +117,8 @@ which provides 25 slash commands organized into 6 groups:
 | `admin` | doctor, cooldowns, latency, events, broadcast |
 | `infra` | version, servers, ports, db |
 
-See the bot's [User Guide](https://github.com/yacketrj/dune-awakening-selfhost-discordbot/blob/main/docs/user-guide.md)
-and [Admin Guide](https://github.com/yacketrj/dune-awakening-selfhost-discordbot/blob/main/docs/admin-guide.md)
-for setup instructions.
+For local setup and validation, follow the
+[Discord Companion Bot Setup](../discord-control-bot/setup-guide.md).
 
 ## Troubleshooting
 
@@ -130,10 +130,9 @@ for setup instructions.
 | Status returns empty | Console can't reach Docker (check socket mount) |
 | "not authorized" | Role IDs don't match between console and bot config |
 
-## Sources
+## Related Documentation
 
-- [Bot Repository](https://github.com/yacketrj/dune-awakening-selfhost-discordbot)
 - [Adapter Contract](../discord-control-bot/api-adapter-contract.md)
+- [Companion Bot Setup](../discord-control-bot/setup-guide.md)
 - [Discord Developer Portal](https://discord.com/developers/applications)
-
 

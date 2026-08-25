@@ -6,4 +6,4 @@ The adapter uses bearer authentication, role mapping, rate limits, audit records
 
 For community support, announcements, addon discussion, and issue triage, join the [Dune Docker Discord](https://discord.gg/duneawakeningdocker).
 
-For the current companion bot and configuration details, see the [Discord bot repository](https://github.com/yacketrj/dune-awakening-selfhost-discordbot) and the main project's [integration guides](https://github.com/Red-Blink/dune-awakening-selfhost-docker/tree/main/docs/integrations/discord-integration).
+For configuration details, start with the [Discord Adapter Setup](../technical/integrations/discord-integration/README.md). Developers integrating a companion bot should also review the [Discord API Adapter Contract](../technical/integrations/discord-control-bot/api-adapter-contract.md).

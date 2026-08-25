@@ -359,11 +359,10 @@ npm ci
 node --test test/blueprints*.test.js test/httpSafety.test.js
 ```
 
-### OWASP Top 10 Security Tests
+### Additional Security Tests
 
-Additional security tests live in the
-[ops-observability addon](https://github.com/yacketrj/dune-ops-observability-addon/tree/main/pipeline/tests)
-and can be injected into any repo:
+Operators who maintain the optional observability security pipeline can run its
+injected checks against a local repository:
 
 ```bash
 bash pipeline/run-security-tests.sh <path-to-repo>
@@ -421,5 +420,4 @@ cd console/web && npx vite build
 See [blueprints-report.md](../archive/blueprints-report.md) for the original
 feature specification and test report from PR #80 (historical record, not
 maintained).
-
 

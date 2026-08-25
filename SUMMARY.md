@@ -70,8 +70,19 @@
 * [Addon Scheduled Jobs](technical/addons/addon-scheduled-jobs.md)
 * [Addon Hardware Status](technical/addons/hardware-status.md)
 
+### Discord Integration Internals
+
+* [Discord Adapter Setup](technical/integrations/discord-integration/README.md)
+* [Discord Companion Bot Setup](technical/integrations/discord-control-bot/setup-guide.md)
+* [Discord API Adapter Contract](technical/integrations/discord-control-bot/api-adapter-contract.md)
+
+### Historical Engineering Records
+
+* [Blueprint Import and Export Test Report](technical/archive/blueprints-report.md)
+* [Addon Provenance Security Record](technical/security/addon-provenance.md)
+* [Pre-Augmented Gear Grant Record](technical/security/pre-augmented-gear-grant.md)
+
 ## Project
 
 * [Help, Issues, and Requests](support.md)
 * [Credits and License](credits-and-license.md)
-
