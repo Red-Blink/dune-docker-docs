@@ -1,6 +1,3 @@
----
----
-
 # Landsraad
 
 The Landsraad page presents the game's faction, house, objective, and milestone data available in the current server database.
@@ -12,4 +9,3 @@ If a player cannot accept a new Landsraad quest even though fewer than the norma
 {% hint style="warning" %}
 Quest repair is targeted at the known hidden-slot inconsistency. It cannot guarantee a fix for every future Funcom quest bug and does not complete quests or award rewards.
 {% endhint %}
-

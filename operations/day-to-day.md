@@ -1,6 +1,3 @@
----
----
-
 # Day-to-Day Operations
 
 ## Daily
@@ -21,4 +18,3 @@
 ## Before Risky Changes
 
 Take a backup, confirm which maps/players are affected, notify players, and verify the final state. Guided Console actions create safety backups where appropriate, but that does not replace a regular off-host backup plan.
-

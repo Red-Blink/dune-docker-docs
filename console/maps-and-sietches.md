@@ -1,6 +1,3 @@
----
----
-
 # Maps, Sietches, and Deep Desert
 
 The Maps page controls how each game map is hosted and displays the effective Sietch or instance name.
@@ -31,4 +28,3 @@ Layout changes are incremental. Adding an instance configures only the new parti
 {% hint style="warning" %}
 Deep Desert layout changes are blocked while players are connected to an affected Deep Desert. Read the confirmation because players in Overland can be disconnected when Overland reloads.
 {% endhint %}
-

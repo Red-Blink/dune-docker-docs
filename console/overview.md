@@ -1,6 +1,3 @@
----
----
-
 # Console Overview
 
 The browser Console is organized into three groups.
@@ -24,4 +21,3 @@ The browser Console is organized into three groups.
 {% hint style="info" %}
 Prefer the guided Console for daily work. The CLI remains available for automation, recovery, and advanced troubleshooting.
 {% endhint %}
-

@@ -1,6 +1,3 @@
----
----
-
 # Console HTTP API
 
 The Dune Docker Console API is the local contract used by the browser Console and protected integrations. It covers authentication, setup, tasks, server control, players, inventories, progression, guilds, bases, vehicles, maps, Sietches, Deep Desert layouts, the Live Map, Landsraad, backups, database exploration, exchange tools, messages, updates, addons, settings, and directory services.
@@ -28,4 +25,3 @@ The maintained reference documents every route, method, accepted parameters, res
 | Community | Addons, public directory, Player Portal reporting, QA authorization |
 
 Read [API Authentication and Safety](api-authentication.md) before writing a client. The source dispatcher and tests remain the final authority for behavior on a specific commit.
-

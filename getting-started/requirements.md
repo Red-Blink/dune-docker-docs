@@ -1,6 +1,3 @@
----
----
-
 # Requirements
 
 You do not need to be a Linux expert. The installer checks the essentials and prepares Docker on supported Linux systems.
@@ -28,4 +25,3 @@ The Survival server can retain roughly 10–12 GB while idle. That alone does no
 {% hint style="danger" %}
 Never expose PostgreSQL, RabbitMQ administration, Docker, or other internal service ports to the public internet. The Console should be reachable only by trusted administrators.
 {% endhint %}
-

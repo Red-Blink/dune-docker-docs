@@ -1,6 +1,3 @@
----
----
-
 # CLI Reference
 
 Run commands from the project directory with `dune` available on the path. Use `dune --help` on your installed version for the exact current syntax.
@@ -115,4 +112,3 @@ dune admin history
 {% hint style="info" %}
 The Console is preferred for interactive administration because it supplies validation, current context, confirmations, and result messages. Use the CLI for automation and support workflows.
 {% endhint %}
-

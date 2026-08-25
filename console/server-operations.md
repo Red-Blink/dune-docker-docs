@@ -1,6 +1,3 @@
----
----
-
 # Server Control, Logs, and Health
 
 ## Home and Server Control
@@ -23,4 +20,3 @@ Common targets include Gateway, Director, Survival, Overland, PostgreSQL, Rabbit
 - **Ports/Ping** help separate local service health from external connectivity.
 
 See [Restart Queue](../technical/console/restart-queue.md) for the precise countdown and recovery behavior.
-

@@ -1,6 +1,3 @@
----
----
-
 # System Architecture
 
 Dune Docker separates orchestration, administration, game services, and optional community services so each can be updated and recovered independently.
@@ -34,4 +31,3 @@ The `dune` CLI and scripts under `runtime/scripts` manage containers, readiness,
 - Public directory and Player Portal data are opt-in and minimized before leaving the host.
 
 For the code-level maintained reference, read [System Architecture Overview on GitHub](https://github.com/Red-Blink/dune-awakening-selfhost-docker/blob/main/docs/architecture/SYSTEM-OVERVIEW.md).
-

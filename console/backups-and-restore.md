@@ -1,6 +1,3 @@
----
----
-
 # Backups and Restore
 
 The Backups page manages full PostgreSQL backups and clearly labels why each backup was created.
@@ -26,4 +23,3 @@ A restore replaces the active database state. Download or preserve important bac
 {% endhint %}
 
 See [Database Backup Identity](../technical/console/database-backups.md) for the full decision matrix.
-

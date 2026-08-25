@@ -1,5 +1,5 @@
 ---
-description: Install, operate, and extend Dune Docker Console for Dune: Awakening dedicated servers.
+description: "Install, operate, and extend Dune Docker Console for Dune: Awakening dedicated servers."
 layout:
   width: wide
   tableOfContents:
@@ -36,4 +36,3 @@ The Console covers the full operating lifecycle: server health and logs, game an
 {% hint style="info" %}
 New here? Start with [Requirements](getting-started/requirements.md), then follow [Installation](getting-started/installation.md) and [First Run](getting-started/first-run.md).
 {% endhint %}
-

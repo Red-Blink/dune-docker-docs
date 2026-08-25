@@ -1,6 +1,3 @@
----
----
-
 # Database
 
 The Database page provides schema/table discovery, column inspection, row previews, export, and a guarded raw SQL workspace.
@@ -17,4 +14,3 @@ Read-only exploration is the safest use. Destructive SQL requires explicit autho
 6. Never paste commands from strangers without understanding the exact tables and records affected.
 
 The `dune` schema belongs to the game and may change after Funcom updates. Console-owned history and state use separate structures where practical so game migrations do not own them.
-

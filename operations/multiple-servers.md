@@ -1,6 +1,3 @@
----
----
-
 # Multiple Servers on One IP
 
 Multiple isolated Battlegroups can share one public IPv4 address only when every instance has a non-overlapping port profile and the router/firewall forwards each range correctly.
@@ -12,4 +9,3 @@ Do not start a second installation by copying only part of an existing profile. 
 {% endhint %}
 
 Follow the complete [multi-server implementation guide](https://github.com/Red-Blink/dune-awakening-selfhost-docker/blob/main/docs/runtime/MULTI-SERVER-SINGLE-PUBLIC-IP.md) before deploying this layout.
-

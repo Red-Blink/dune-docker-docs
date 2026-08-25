@@ -1,6 +1,3 @@
----
----
-
 # First Run
 
 The first login opens guided setup. Complete each step in order; the Console validates required files and services before presenting normal administration pages.
@@ -22,4 +19,3 @@ The administrator password is stored on the host at `runtime/secrets/admin-web-p
 {% hint style="warning" %}
 The Console is an administrative interface with powerful game and database actions. Give access only to trusted people and use roles/policies when delegating duties.
 {% endhint %}
-

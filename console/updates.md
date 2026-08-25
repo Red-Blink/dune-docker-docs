@@ -1,6 +1,3 @@
----
----
-
 # Updates and QA Builds
 
 The Updates page separates the game server from Dune Docker Console updates.
@@ -22,4 +19,3 @@ The recognized roles are managed by the project community. Authorization is per 
 {% hint style="warning" %}
 Pre-release builds are for testing. Back up first, expect unfinished behavior, and report results—including a clear follow-up—through the QA channel.
 {% endhint %}
-

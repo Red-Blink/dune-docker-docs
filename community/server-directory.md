@@ -1,6 +1,3 @@
----
----
-
 # Public Server Directory
 
 [DuneDocker.app](https://dunedocker.app/) helps players discover community servers and lets owners present live, useful information about their Battlegroup.
@@ -22,4 +19,3 @@ On the directory, **My Characters** keeps the full server list visible but moves
 {% hint style="info" %}
 Directory ranking is recalculated from the website's ranking period; it is not a permanent position and does not update from a single momentary player-count spike.
 {% endhint %}
-

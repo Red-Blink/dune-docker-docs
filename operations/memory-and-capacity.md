@@ -1,6 +1,3 @@
----
----
-
 # Memory and Map Capacity
 
 Each running game map consumes meaningful memory even while idle. Dynamic mode keeps less-used maps available on demand; Always On trades faster access for a larger steady footprint.
@@ -14,4 +11,3 @@ Each running game map consumes meaningful memory even while idle. Dynamic mode k
 - Deep Desert layouts let an operator explicitly run one, two, or three instances.
 
 Start conservatively, observe real peak usage, and add maps gradually. Avoid treating Linux cache or one large idle process as proof of a leak; evaluate sustained growth, swap pressure, OOM events, and service health together.
-

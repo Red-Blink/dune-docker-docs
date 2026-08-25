@@ -1,6 +1,3 @@
----
----
-
 # Community Addons
 
 Community Addons extend the Console with optional pages and automation. Browse and manage them from **Addons**.
@@ -19,4 +16,3 @@ Browse the [Community Addons repository](https://github.com/Red-Blink/dune-docke
 {% hint style="warning" %}
 An addon can be safe only within the permissions you approve. Review new permissions after every update and remove addons you no longer trust or use.
 {% endhint %}
-

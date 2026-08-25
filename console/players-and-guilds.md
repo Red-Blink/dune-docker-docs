@@ -1,6 +1,3 @@
----
----
-
 # Players and Guilds
 
 The Players page combines identity, location, progression, inventories, vehicles, bases, blueprints, and administrative repair tools for each character.
@@ -28,4 +25,3 @@ An online character can be teleported live to coordinates, another online player
 The Guilds page shows guild membership and relevant server-side guild configuration. Guild limits come from effective game settings; duplicated raw settings are normalized in the Console presentation.
 
 See [Blueprints](../technical/console/blueprints.md) for import/export and repair details.
-

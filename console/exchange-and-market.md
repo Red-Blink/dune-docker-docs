@@ -1,6 +1,3 @@
----
----
-
 # Exchange and Market Bot
 
 The Exchange page includes three related views.
@@ -24,4 +21,3 @@ The game database cannot identify every external bot perfectly. Review owner cla
 {% endhint %}
 
 See [Market Board Internals](../technical/console/exchange.md) for data-model and safety details.
-

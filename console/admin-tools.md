@@ -1,6 +1,3 @@
----
----
-
 # Admin Tools and Care Packages
 
 Admin Tools collects actions that operate on players, maps, inventory, progression, vehicles, and messages.
@@ -23,4 +20,3 @@ Enabling an automatic rule also enables its parent Care Package so the rule cann
 {% hint style="info" %}
 Grant requirements differ by item type. Live grants may require the player online; database-backed schematics, augments, or repair actions may require the player offline. The Console labels the required state.
 {% endhint %}
-

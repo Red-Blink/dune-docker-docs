@@ -1,6 +1,3 @@
----
----
-
 # Networking and Ports
 
 For public hosting, forward the game-facing ports to the server running Dune Docker.
@@ -22,4 +19,3 @@ The exact UDP assignments and Console port can be changed. Use `dune ports` to i
 - Do not publish PostgreSQL or Docker socket access.
 
 Use `dune ping`, `dune ports`, and the Console health checks when diagnosing connectivity. For multiple Battlegroups behind one public IPv4 address, follow [Multiple Servers on One IP](../operations/multiple-servers.md).
-

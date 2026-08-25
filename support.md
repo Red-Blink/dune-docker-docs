@@ -1,6 +1,3 @@
----
----
-
 # Help, Issues, and Requests
 
 Choose the channel that matches what you need:
@@ -19,4 +16,3 @@ Choose the channel that matches what you need:
 - Whether the behavior also occurs without a Community Addon.
 
 Remove passwords, tokens, private IP details, Steam identifiers, and other secrets before sharing logs publicly.
-

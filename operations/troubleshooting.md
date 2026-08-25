@@ -1,6 +1,3 @@
----
----
-
 # Troubleshooting
 
 Start with evidence, not a broad restart.
@@ -34,4 +31,3 @@ Confirm the player was fully offline when required, the operation reported the i
 ### Support request
 
 Run `dune doctor`, capture only relevant logs, redact secrets, and use [Help, Issues, and Requests](../support.md).
-

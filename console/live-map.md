@@ -1,6 +1,3 @@
----
----
-
 # Live Map
 
 The Live Map renders selected Hagga Basin or Deep Desert partitions with live and static layers, coordinates, map bounds, Coriolis information, and linked administration actions.
@@ -20,4 +17,3 @@ Available layers can include online players, bases, vehicles, spice/resource fie
 The map resolves the user-defined Sietch/partition display name. Coriolis seed and countdown are read from current game-server evidence rather than guessed from the browser clock.
 
 See [Live Map Internals](../technical/console/live-map.md) for marker sources and coordinate behavior.
-

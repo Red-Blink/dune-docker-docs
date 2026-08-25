@@ -1,6 +1,3 @@
----
----
-
 # API Authentication and Safety
 
 The Console HTTP API is primarily an internal contract used by the browser application. It is not a public cloud API and should not be exposed directly to untrusted networks.
@@ -23,4 +20,3 @@ The optional Discord/integration adapter uses its own bearer token and role-to-p
 - Errors are JSON responses with a safe `error` message; secrets are redacted.
 
 See [Console HTTP API](http-api.md) for the complete endpoint reference.
-

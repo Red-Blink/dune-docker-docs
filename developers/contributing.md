@@ -1,6 +1,3 @@
----
----
-
 # Contributing
 
 Contributions are welcome through the [main GitHub repository](https://github.com/Red-Blink/dune-awakening-selfhost-docker).
@@ -16,4 +13,3 @@ Contributions are welcome through the [main GitHub repository](https://github.co
 - Explain what changed, how it was tested, and any migration/restart impact.
 
 For addons, use the addon template and submit catalog changes to the [addons repository](https://github.com/Red-Blink/dune-docker-addons).
-

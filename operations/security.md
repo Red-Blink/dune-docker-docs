@@ -1,6 +1,3 @@
----
----
-
 # Security
 
 Dune Docker is an administrative control plane. Protect it like any service that can change a production database.
@@ -16,4 +13,3 @@ Dune Docker is an administrative control plane. Protect it like any service that
 - Install public releases from the official repository.
 
 The Console uses session authentication, CSRF protection, rate limits, explicit confirmation phrases, allowlisted command arguments, audit records, response redaction, and permission-specific addon/API actions. These controls reduce risk; they do not make an internet-exposed owner account safe.
-

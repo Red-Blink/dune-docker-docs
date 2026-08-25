@@ -1,6 +1,3 @@
----
----
-
 # Credits and License
 
 Dune Docker Console is led and maintained by **RedBlink**, with code, testing, documentation, addons, and support contributed by the community.
@@ -12,4 +9,3 @@ Dune Docker Console is led and maintained by **RedBlink**, with code, testing, d
 The project is free and open source under the [MIT License](https://github.com/Red-Blink/dune-awakening-selfhost-docker/blob/main/LICENSE).
 
 Dune: Awakening and related names and imagery belong to their respective owners. This community project is not affiliated with Funcom.
-
