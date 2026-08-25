@@ -3,7 +3,7 @@ description: "Install, operate, and extend Dune Docker Console for Dune: Awakeni
 layout:
   width: wide
   tableOfContents:
-    visible: false
+    visible: true
   outline:
     visible: false
   pagination:
