@@ -25,4 +25,4 @@ The Console refuses to guess because characters and server identity are related.
 A restore replaces the active database state. Download or preserve important backups before cleanup, and read the identity warning carefully.
 {% endhint %}
 
-See [Database Backup Identity](../technical/console/database-backups.md) for the full decision matrix.
+See [Database Backup Identity](https://github.com/Red-Blink/dune-awakening-selfhost-docker/blob/main/docs/console/database-backups.md) for the full decision matrix.

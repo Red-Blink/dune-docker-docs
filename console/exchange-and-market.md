@@ -23,4 +23,4 @@ Bot Items provides per-item enable, price, and listing-count overrides, plus car
 The game database cannot identify every external bot perfectly. Review owner classification settings before relying on bot/player filters for moderation decisions.
 {% endhint %}
 
-See [Market Board Internals](../technical/console/exchange.md) for data-model and safety details.
+See [Market Board Internals](https://github.com/Red-Blink/dune-awakening-selfhost-docker/blob/main/docs/console/exchange.md) for data-model and safety details.

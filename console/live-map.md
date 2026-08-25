@@ -19,4 +19,4 @@ Available layers can include online players, bases, vehicles, spice/resource fie
 
 The map resolves the user-defined Sietch/partition display name. Coriolis seed and countdown are read from current game-server evidence rather than guessed from the browser clock.
 
-See [Live Map Internals](../technical/console/live-map.md) for marker sources and coordinate behavior.
+See [Live Map Internals](https://github.com/Red-Blink/dune-awakening-selfhost-docker/blob/main/docs/console/live-map.md) for marker sources and coordinate behavior.

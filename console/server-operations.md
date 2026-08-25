@@ -22,4 +22,4 @@ Common targets include Gateway, Director, Survival, Overland, PostgreSQL, Rabbit
 - **Doctor** gathers safe diagnostics for common installation and runtime problems.
 - **Ports/Ping** help separate local service health from external connectivity.
 
-See [Restart Queue](../technical/console/restart-queue.md) for the precise countdown and recovery behavior.
+See [Restart Queue](https://github.com/Red-Blink/dune-awakening-selfhost-docker/blob/main/docs/console/restart-queue.md) for the precise countdown and recovery behavior.

@@ -18,4 +18,4 @@ Vehicle durability is stored across multiple game representations. The Console r
 Repair is a database-backed operation for an offline player/vehicle state. Follow the action's offline instruction and verify in game after the player reconnects.
 {% endhint %}
 
-See [Vehicle Permissions](../technical/console/vehicle-permissions.md) for roster rules.
+See [Vehicle Permissions](https://github.com/Red-Blink/dune-awakening-selfhost-docker/blob/main/docs/console/vehicle-permissions.md) for roster rules.

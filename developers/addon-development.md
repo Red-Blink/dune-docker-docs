@@ -16,4 +16,4 @@ Start from the [Official Addon Template](https://github.com/Red-Blink/dune-docke
 
 The [Community Addons index](https://github.com/Red-Blink/dune-docker-addons) is the official catalog consumed by the Console. Addon manifests are validated and permission changes require fresh approval.
 
-Detailed contracts: [Addon Item Grants](../technical/addons/addon-item-grants.md), [Addon Scheduled Jobs](../technical/addons/addon-scheduled-jobs.md), and [Addon Hardware Status](../technical/addons/hardware-status.md).
+Detailed contracts: [Addon Item Grants](https://github.com/Red-Blink/dune-awakening-selfhost-docker/blob/main/docs/addons/addon-item-grants.md), [Addon Scheduled Jobs](https://github.com/Red-Blink/dune-awakening-selfhost-docker/blob/main/docs/addons/addon-scheduled-jobs.md), and [Addon Hardware Status](https://github.com/Red-Blink/dune-awakening-selfhost-docker/blob/main/docs/addons/hardware-status.md).

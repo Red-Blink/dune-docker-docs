@@ -23,4 +23,4 @@ The Land Claim Editor displays the horizontal staking-unit grid and vertical exp
 Database-level claim editing can place a claim across a region where the game still independently prohibits construction. Claim ownership does not guarantee every world blocker becomes buildable.
 {% endhint %}
 
-Detailed behavior: [Base Inventory](../technical/console/base-inventory.md), [Base Permissions](../technical/console/base-permissions.md), and [Base Deletion](../technical/console/base-deletion.md).
+Detailed behavior: [Base Inventory](https://github.com/Red-Blink/dune-awakening-selfhost-docker/blob/main/docs/console/base-inventory.md), [Base Permissions](https://github.com/Red-Blink/dune-awakening-selfhost-docker/blob/main/docs/console/base-permissions.md), and [Base Deletion](https://github.com/Red-Blink/dune-awakening-selfhost-docker/blob/main/docs/console/base-deletion.md).

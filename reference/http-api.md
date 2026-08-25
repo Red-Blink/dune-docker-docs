@@ -13,7 +13,7 @@ This API is an administrative interface, not a public hosted API. Keep it on a t
 
 The maintained reference documents every route, method, accepted parameters, response behavior, capability flags, confirmation phrase, and important safety boundary:
 
-<a href="../technical/console/API-REFERENCE.md" class="button primary" data-icon="brackets-curly">Open the Complete API Reference</a>
+<a href="https://github.com/Red-Blink/dune-awakening-selfhost-docker/blob/main/docs/console/API-REFERENCE.md" class="button primary" data-icon="brackets-curly">Open the Complete API Reference</a>
 
 ## Major Resource Groups
 
