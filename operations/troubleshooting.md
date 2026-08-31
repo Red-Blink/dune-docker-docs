@@ -16,6 +16,8 @@ dune ps
 
 Confirm Gateway/Director readiness, the public address, firewall/NAT rules, UDP port range, and Funcom token status. Test from an external network.
 
+If external players connect normally but players on the same LAN cannot, check for missing router hairpin NAT. Use the [Local Network NAT Loopback Alternative](../getting-started/nat-loopback.md) only after confirming that exact symptom.
+
 ### A map repeatedly starts and stops
 
 Identify whether it is Dynamic and whether demand is still present. Check Autoscaler and Director logs, then the affected server container. Repeated server IDs usually mean instances are being recreated, not merely losing one client connection.

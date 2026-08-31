@@ -18,4 +18,6 @@ The exact UDP assignments and Console port can be changed. Use `dune ports` to i
 - NAT loopback behavior differs by router; test from outside your home network.
 - Do not publish PostgreSQL or Docker socket access.
 
+If remote players can connect but computers on the server's local network cannot, the router may not support hairpin NAT. Follow the [Local Network NAT Loopback Alternative](nat-loopback.md) to configure a persistent Linux rule and a route on each affected Windows gaming computer.
+
 Use `dune ping`, `dune ports`, and the Console health checks when diagnosing connectivity. For multiple Battlegroups behind one public IPv4 address, follow [Multiple Servers on One IP](../operations/multiple-servers.md).
