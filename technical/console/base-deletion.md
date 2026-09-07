@@ -43,6 +43,8 @@ two functions the game already ships (`permission_actor_destroy` and
 
 ## Endpoints
 
+These API paths belong to your own Dune Docker Console address. They are not URLs on `docs.dunedocker.app`. Replace `:baseId` with the numeric ID of the base.
+
 | Method | Path | Purpose |
 |---|---|---|
 | `DELETE` | `/api/bases/:baseId` | Delete the base. Body: `{ confirmation: "DELETE BASE" }`. |
@@ -163,5 +165,4 @@ DELETE /api/bases/{baseId}
 base's map is confirmed down; otherwise the delete already ran and
 `deletedActorCount`/`deletedBuildingCount`/`deletedPlaceableCount` describe
 what was removed.
-
 

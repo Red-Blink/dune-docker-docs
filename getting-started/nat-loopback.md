@@ -4,6 +4,8 @@ Some routers do not support **NAT loopback**, also called **hairpin NAT**. Witho
 
 This guide provides a persistent alternative for Windows players connecting to a Linux-hosted Dune server on the same local network.
 
+Paths such as `/usr/local/sbin/dune-nat-loopback` and `/etc/dune-nat-loopback/config` refer to files on your Linux server, not pages on this documentation website.
+
 ## When to Use This Guide
 
 Use this guide only when all of the following are true:

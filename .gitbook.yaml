@@ -1,0 +1,10 @@
+# Recover documentation visits to example Console endpoints and host file paths.
+# These are documentation redirects, not live Console API routes.
+redirects:
+  'api/bases/:baseId': technical/console/base-deletion.md
+  'api/bases/:baseid': technical/console/base-deletion.md
+  'api/bases/:baseId/queued-delete': technical/console/base-deletion.md
+  'api/bases/:baseid/queued-delete': technical/console/base-deletion.md
+  'api/bases/pending-deletes': technical/console/base-deletion.md
+  'usr/local/sbin/dune-nat-loopback': getting-started/nat-loopback.md
+  'etc/dune-nat-loopback/config': getting-started/nat-loopback.md
