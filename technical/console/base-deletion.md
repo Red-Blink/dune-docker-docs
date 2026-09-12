@@ -43,8 +43,6 @@ two functions the game already ships (`permission_actor_destroy` and
 
 ## Endpoints
 
-These API paths belong to your own Dune Docker Console address. They are not URLs on `docs.dunedocker.app`. Replace `:baseId` with the numeric ID of the base.
-
 | Method | Path | Purpose |
 |---|---|---|
 | `DELETE` | `/api/bases/:baseId` | Delete the base. Body: `{ confirmation: "DELETE BASE" }`. |
@@ -92,6 +90,75 @@ write-safe. If it is, the delete runs immediately. If not, it is recorded in
 entries) and applied the next time that partition is confirmed down — the
 same 5-second poll and restart-task `onMapDown` hook that flushes queued fuel
 and water refills.
+
+### What the restart reports
+
+When the flush runs from a restart, every outcome is recorded on that task:
+what applied, what was cleared because its target no longer exists, what failed
+and stays queued (with the reason), and what was dropped and has to be
+requested again.
+
+Failures are additionally promoted onto the task itself. Each one is written
+with a `QUEUED_WRITE_WARNING:` prefix (the same convention the Advanced Editor
+content warnings use), which `taskWarnings` strips back off into `task.warnings`
+— so the Console's task panel renders them in its body, above the log, with a
+warning count beside the status badge. The task's own status is untouched: a
+restart that worked still reports `succeeded`, because the restart did work.
+Only the queued write did not.
+
+The full flush log is an expandable **Technical details** disclosure on the
+task panel, collapsed by default. (It previously used `.technical-details`,
+which `styles.css` hides behind a `body.debug` class that nothing in the app
+sets — so for a restart task the log was unreachable. It now uses the same
+always-rendered disclosure the deployment log uses.)
+
+The flush is also bounded. If it has not finished within
+`ADMIN_MAP_WRITE_FLUSH_TIMEOUT_MS` (default 5 minutes) the restart reports the
+overrun and continues to its start half rather than leaving the battlegroup
+down. Nothing is lost: the writes are transactional, so anything interrupted
+rolls back and stays queued for a later pass.
+
+The restart hook runs the flush as a *fresh* pass: a pass already in flight
+when the map goes down was started while that map was still live and would
+report nothing to do, so the hook waits for it and then runs its own. The 5s
+poll is the cheap case and simply reuses an in-flight result.
+
+The hook also ignores the retry backoff. A failed attempt puts an entry to
+sleep for `ADMIN_BASE_DELETE_RETRY_DELAY_MS` (60s by default) while the poll
+runs every 5s, so a persistently blocked entry is inside a backoff window most
+of the time — and the map-down window is the one moment it can actually be
+applied. Only the hook overrides that; the poll keeps backing off, which is
+what stops it hammering a failing entry.
+
+### A picked-up base is refused, not deleted
+
+`DELETE /api/bases/:baseId` rejects a base that was picked up into a backup
+with `409`. That check is repeated **inside the delete transaction**, so it
+also covers the queued path: a delete can sit queued for hours waiting for its
+map to come down, and the player can pick the base up in the meantime. A
+picked-up base still holds all of its data — the backup tool only unclaims it
+and registers its actor ids (see [base-backups.md](base-backups.md)) — so
+deleting one would destroy something the player expects to redeploy.
+
+A base already picked up is detected before the safety backup is taken, so a
+blocked delete does not spend a full database backup per retry. The check is
+repeated inside the transaction, which is what actually guarantees it.
+
+As a backstop, base-delete safety backups are count-pruned the same way vehicle
+deletes are: the newest `DUNE_BASE_DELETE_BACKUP_KEEP` (10 by default) are kept
+after each one is taken. Manual, automatic, and other safety backups are never
+prune candidates.
+
+A queued delete blocked this way stays queued **without consuming a retry
+attempt**: it fails identically on every pass, so counting those passes would
+exhaust the retry budget and silently drop a request that was never wrong,
+only blocked. Once redeployed it applies on the next eligible pass — immediately if a map-down
+flush runs, otherwise after the retry delay — and is otherwise cleared by the
+existing age-out. There is deliberately no
+"the maps are down, delete it anyway" override of the kind the vehicle queue
+has for `Travel`/recovery states: those are mid-transit artifacts a stopped
+map resolves, whereas being picked up is a deliberate player action that
+survives any number of restarts.
 
 **One divergence from the refill queue:** at flush time, finding that the base
 no longer exists counts as **success**, not a failure to retry. A refill on a
@@ -166,3 +233,9 @@ base's map is confirmed down; otherwise the delete already ran and
 `deletedActorCount`/`deletedBuildingCount`/`deletedPlaceableCount` describe
 what was removed.
 
+## Related
+
+- [vehicle-deletion.md](vehicle-deletion.md) — the same shape applied to
+  vehicles, as a parallel queue rather than a shared one. A vehicle needs no
+  multi-hop actor enumeration (it is already its own actor), but adds a
+  vehicle-specific `dune.actor_state` guard bases have no equivalent of.

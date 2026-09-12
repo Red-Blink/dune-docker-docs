@@ -15,6 +15,12 @@ Existing per-map settings are retained when changing unrelated maps. The Console
 
 Hagga Basin (`Survival_1`) can have multiple Sietch dimensions. Each partition may have a user-facing display name and password. Overland remains **Overland**; Sietch naming applies to Hagga Basin instances, not every map.
 
+## Party-Isolated Activity Maps
+
+Maps configured by the Director for one party per instance can scale to multiple dimensions when unrelated parties request them. This includes Smugglers Run, Ruins of Tsimpo, and Wind Pass in the current defaults. The Autoscaler counts starting instances as capacity, creates only the dimensions needed for demand, respects the configured maximum, and retires transient instances after use.
+
+Cleanup for these activity maps runs after shutdown. A cleanup problem is reported without blocking the next map start.
+
 ## Deep Desert Layouts
 
 Choose one, two, or three Deep Desert instances. In a mixed layout:

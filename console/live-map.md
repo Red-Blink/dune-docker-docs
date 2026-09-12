@@ -1,10 +1,12 @@
 # Live Map
 
-The Live Map renders selected Hagga Basin or Deep Desert partitions with live and static layers, coordinates, map bounds, Coriolis information, and linked administration actions.
+The Live Map renders selected Hagga Basin or Deep Desert partitions with live and static layers, coordinates, map bounds, Coriolis information, and linked administration actions. Deep Desert uses the game's cartography terrain when the matching assets are available and falls back safely when they are not.
 
 ## Layers
 
 Available layers can include online players, bases, vehicles, spice/resource fields, static resources, caves, ecological labs, POIs, trainers, vendors, fortresses, hazards, and other marker types present in the game data. Empty categories are hidden. Save browser-specific default visibility through the Layers settings.
+
+Deep Desert coordinates include their A1–I9 sector where applicable. Vehicles that are traveling, backed up, or awaiting recovery are labeled from their recorded lifecycle state instead of being presented as spawned in a nonexistent partition.
 
 ## Actions
 

@@ -26,6 +26,10 @@ Identify whether it is Dynamic and whether demand is still present. Check Autosc
 
 The Console carries a build-version watcher and cache headers to refresh stale assets after an update. Wait for the update helper to finish, use **Refresh Now**, and perform one hard refresh only if an older browser/service-worker cache survives the replacement.
 
+### The directory shows relay latency
+
+Confirm UDP `32000–32015` is permitted through both the host firewall and any upstream internet-to-DMZ firewall or NAT device. A working relay result means the server can still answer through fallback; it does not prove that direct UDP packets reach the host.
+
 ### A database-backed repair does not appear in game
 
 Confirm the player was fully offline when required, the operation reported the intended rows, and the relevant map has loaded fresh state. Do not repeat mutations blindly.

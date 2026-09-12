@@ -4,6 +4,8 @@ Multiple isolated Battlegroups can share one public IPv4 address only when every
 
 Each installation needs unique Console, messaging, HTTP, Gateway, and UDP map ports, plus an isolated Compose/project identity and data paths. Hairpin/NAT behavior must also work for local clients using the public address.
 
+The optional public-directory probe uses UDP `32000–32015` for direct latency. Its fixed range is not rewritten by the multi-server profile tool; relay fallback remains available where the direct path cannot be routed.
+
 {% hint style="danger" %}
 Do not start a second installation by copying only part of an existing profile. A single overlapping game or messaging port can produce intermittent registration and travel failures that resemble a game bug.
 {% endhint %}

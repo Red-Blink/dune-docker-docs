@@ -114,6 +114,12 @@ the action rather than guessing an actor id. As with ordinary transfers, the
 shipped permission procedures notify the running map immediately; no map restart
 is queued.
 
+Detection is entirely server-wide, not base-scoped — there is exactly one
+reserved Server/GM custodian per battlegroup, the same identity Care Packages
+and MOTD use. Vehicle permissions offer the identical transfer action against
+the same detected identity; see
+[vehicle-permissions.md's System custodian section](vehicle-permissions.md#system-custodian).
+
 ## The roster cap comes from server config
 
 The game caps permissions per actor. Two settings exist:
@@ -240,10 +246,13 @@ once per list request rather than per row.
 
 ## Related
 
+- [base-child-permissions.md](base-child-permissions.md) — the **Base
+  Permissions** tab, a separate editor for individual pieces (doors, devices)
+  within a claimed base. It uses a different 5-tier access scale from the
+  ranks on this page; despite three of its five levels being named the same
+  as ranks here (Associate/Co-Owner/Owner), the two scales are unrelated.
 - [generator-refill-caps.md](generator-refill-caps.md) — the refill endpoint, and
   the queue this feature deliberately does not use.
 - [vehicle-permissions.md](vehicle-permissions.md) — the same roster-editing
-  engine applied to vehicles, minus the system-custodian transfer.
+  engine and the same system-custodian transfer, applied to vehicles.
 - [API-REFERENCE.md](API-REFERENCE.md) — full HTTP API reference.
-
-

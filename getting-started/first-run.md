@@ -6,7 +6,7 @@ The first login opens guided setup. Complete each step in order; the Console val
 
 1. Enter and validate the Funcom hosting token.
 2. Set the public server title and initial gameplay choices.
-3. Confirm the generated network ports.
+3. Confirm the generated network ports, including whether you want to allow the optional UDP `32000–32015` direct directory-latency range.
 4. Start the Battlegroup from **Home** or **Server Control**.
 5. Watch **Readiness** until the core services and required maps are ready.
 6. Join once locally before opening the server to your community.

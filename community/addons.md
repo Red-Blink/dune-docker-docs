@@ -10,6 +10,7 @@ Community Addons extend the Console with optional pages and automation. Browse a
 - An update that adds permissions requires approval for those additions.
 - Installed settings, schedules, and enabled state are preserved across compatible updates.
 - Provenance and download validation protect the install path from untrusted assets.
+- Approved addons can use core-owned storage and delivery services without receiving unrestricted access to Funcom's game tables.
 
 Browse the [Community Addons repository](https://github.com/Red-Blink/dune-docker-addons). Developers should begin with the [Official Addon Template](https://github.com/Red-Blink/dune-docker-addon-template) and [Addon Development](../developers/addon-development.md).
 

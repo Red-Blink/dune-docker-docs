@@ -58,6 +58,16 @@ does (`start-all.sh`), which every restart path (manual, scheduled,
 IP-change) ultimately runs. This mirrors the existing Landsraad "Pending
 Restart" indicator, generalized to any UserEngine/UserGame save.
 
+The same indicator can also appear with no admin action at all: on first
+startup, if `SERVER_REGION` maps to a known Coriolis master schedule, the
+console seeds whichever of the global Cycle Start Hour and Cycle Start Day
+have never been explicitly saved and marks the same deferred-restart
+indicator ("Coriolis cycle start settings (region default)"). Each field is
+migrated independently — an admin who already saved one keeps their value,
+and only the other (if still unset) is seeded. This is a one-time migration
+per field, not a recurring background write — restart at your convenience
+like any other deferred save.
+
 ## Enabling and configuring
 
 Open **Admin Tools → Schedule Server Restart** and turn on **Restart Queue**.
@@ -117,6 +127,28 @@ is visible in the preview and in the live broadcast. Title is 1-80 characters,
 body is 1-500 characters (the same limits the game's broadcast command
 enforces) — an edit outside those bounds is rejected per-field, in the editor
 and again on save.
+
+## What a restart will flush
+
+Taking a map down is when queued database writes are applied — generator
+refills, water refills, base deletes,
+[vehicle deletes](vehicle-deletion.md), and
+[base permission changes](base-child-permissions.md). Every restart
+confirmation therefore carries a **Queued Writes** line naming what this
+particular restart will write, scoped to the targeted partition (or totalled
+across every map for a battlegroup restart).
+
+This is resolved inside `runGatedRestart`, not by each caller, so it reaches
+every surface that can trigger a restart — the Bases queue banner, the Maps
+per-map and per-Sietch controls, the Server battlegroup buttons, the
+per-service Restart, the Landsraad persistent-rules restart, the Maps
+deferred-settings banner, and Admin Tools' **Restart Now**. Several of those
+previously showed nothing about pending writes at all.
+
+The counts are context, not a gate: an unreachable or unsupported queue
+endpoint omits the line rather than blocking a restart. Permission changes are
+counted in **pieces, not bases** — one base with six queued pieces is six
+pending writes.
 
 ## Concurrency rules
 
@@ -199,5 +231,3 @@ force an immediate restart.
 
 - [API-REFERENCE.md](API-REFERENCE.md) — full HTTP API reference, including the
   Server Operations section these routes belong to.
-
-

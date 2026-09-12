@@ -10,6 +10,10 @@ The normal Console signs in through the authentication routes, receives an HTTP-
 
 The optional Discord/integration adapter uses its own bearer token and role-to-policy mapping. It is disabled by default. Write commands require explicit enablement in addition to authentication.
 
+## Scoped API Keys
+
+Named bearer keys can be created for external tools with per-namespace Read or Read + Write scopes. Keys never receive Console settings, setup, or raw database access, and cannot install updates or addons. Revoke a key when it is no longer needed and store its secret outside source control and logs.
+
 ## Response and Mutation Rules
 
 - Read routes generally use `GET`; mutations use `POST`, `PUT`, or `DELETE`.
@@ -19,4 +23,4 @@ The optional Discord/integration adapter uses its own bearer token and role-to-p
 - Mutations are rate-limited and audited.
 - Errors are JSON responses with a safe `error` message; secrets are redacted.
 
-See [Console HTTP API](http-api.md) for the complete endpoint reference.
+See [Console HTTP API](http-api.md), [Scoped Console API Keys](../technical/console/api-keys.md), and [Console IAM Architecture](../technical/console-iam.md) for the complete model.

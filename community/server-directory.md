@@ -5,12 +5,18 @@
 ## Listing Features
 
 - Online state, current player count, region, capacity, and Sietches.
-- Personalized latency checks where the server opts into the public probe.
+- Personalized latency checks where the server opts into the public probe, with a direct path when available and automatic relay fallback.
 - Community description, rules, Discord invite, and active gameplay modifiers.
 - Modifier values grouped by Global, each Sietch, and each Deep Desert instance.
 - Character-level badges for Steam-linked users when that server enables Player Portal data.
 
 Claim the listing from Console **Settings** to verify ownership and manage its public profile. Local/LAN-only servers are not listed.
+
+## Personalized Latency
+
+The directory tests latency from the visitor's browser to participating servers. A direct result uses the server's dedicated UDP `32000–32015` probe range. Permit or forward that range through the host firewall and any upstream internet-to-DMZ firewall or router for the fastest measurement.
+
+Opening this optional range is not required for listing or joining a server. If the direct path is unavailable, the check automatically uses the Dune Docker relay and may report higher latency.
 
 ## Character View
 

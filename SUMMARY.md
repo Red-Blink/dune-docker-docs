@@ -30,6 +30,7 @@
 
 ## Community Services
 
+* [Dune Docker Base Builder](community/base-builder.md)
 * [Public Server Directory](community/server-directory.md)
 * [Player Portal and Privacy](community/player-portal.md)
 * [Community Addons](community/addons.md)
@@ -64,13 +65,19 @@
 * [Database Backup Identity](technical/console/database-backups.md)
 * [Restart Queue](technical/console/restart-queue.md)
 * [Vehicle Permissions](technical/console/vehicle-permissions.md)
+* [Vehicle Storage Contents](technical/console/vehicle-storage.md)
+* [Vehicle Deletion](technical/console/vehicle-deletion.md)
+* [Per-Piece Base Permissions](technical/console/base-child-permissions.md)
 * [Market Board Internals](technical/console/exchange.md)
 * [Live Map Internals](technical/console/live-map.md)
 * [Generator Refill Caps](technical/console/generator-refill-caps.md)
 * [Generator Fuel Burn Rates](technical/console/generator-fuel-burn-rates.md)
 * [Addon Item Grants](technical/addons/addon-item-grants.md)
+* [Addon Runtime API](technical/addons/addon-runtime-api.md)
 * [Addon Scheduled Jobs](technical/addons/addon-scheduled-jobs.md)
 * [Addon Hardware Status](technical/addons/hardware-status.md)
+* [Console IAM Architecture](technical/console-iam.md)
+* [Scoped Console API Keys](technical/console/api-keys.md)
 
 ### Discord Integration Internals
 

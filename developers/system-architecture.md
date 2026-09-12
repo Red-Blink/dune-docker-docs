@@ -23,6 +23,8 @@ The web frontend is React/TypeScript. The Node.js API uses the built-in HTTP ser
 
 The `dune` CLI and scripts under `runtime/scripts` manage containers, readiness, updates, backups, map lifecycle, Sietch dimensions, autoscaling, memory, and network diagnostics. Gameplay services run as named Docker containers. Dynamic partitions are created from Director/database state and reconciled by runtime services.
 
+The optional public probe uses a fixed UDP `32000–32015` range for direct personalized latency on native Linux and retains relay fallback when that range is closed. Permissioned addon runtime services keep supported storage, rewards, and private-message delivery under Console ownership.
+
 ## Data Ownership
 
 - Funcom owns the game schema and can change it in game updates.
