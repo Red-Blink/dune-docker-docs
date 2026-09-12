@@ -1,7 +1,7 @@
 # Recover documentation visits to example Console endpoints and host file paths.
 # These are documentation redirects, not live Console API routes.
 redirects:
-  'getting-started/vmware-workstation-ubuntu': getting-started/install-dune-docker-on-windows.md
+  'getting-started/vmware-workstation-ubuntu': getting-started/install-dune-docker-on-windows
   'api/bases/:baseId': technical/console/base-deletion.md
   'api/bases/:baseid': technical/console/base-deletion.md
   'api/bases/:baseId/queued-delete': technical/console/base-deletion.md
