@@ -1,6 +1,6 @@
-# VMware Workstation and Ubuntu Server
+# Install Dune Docker on Windows with VMware
 
-This guide creates a Dune Docker host in an Ubuntu Server virtual machine on VMware Workstation Pro. A native Linux host remains the simplest option for a busy public server, but a properly sized bridged VM is supported.
+This guide installs Dune Docker on a Windows computer by running Ubuntu Server in a VMware Workstation Pro virtual machine. A native Linux host remains the simplest option for a busy public server, but a properly sized bridged Windows VM is supported.
 
 ## 1. Avoid the Hyper-V Default Switch
 

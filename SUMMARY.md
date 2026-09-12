@@ -6,7 +6,7 @@
 
 * [Requirements](getting-started/requirements.md)
 * [Installation](getting-started/installation.md)
-* [VMware Workstation and Ubuntu Server](getting-started/vmware-workstation-ubuntu.md)
+* [Install Dune Docker on Windows with VMware](getting-started/install-dune-docker-on-windows.md)
 * [First Run](getting-started/first-run.md)
 * [Migrate a Hyper-V Database](getting-started/migrate-hyper-v-database.md)
 * [Networking and Ports](getting-started/networking.md)

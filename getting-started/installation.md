@@ -20,4 +20,4 @@ The root [GitHub README](https://github.com/Red-Blink/dune-awakening-selfhost-do
 
 The project directory is created at `~/dune-awakening-selfhost-docker` unless you deliberately install it elsewhere.
 
-Running the server in a Windows-hosted VM? Follow [VMware Workstation and Ubuntu Server](vmware-workstation-ubuntu.md) before installing Dune Docker.
+Running the server on Windows? Follow [Install Dune Docker on Windows with VMware](install-dune-docker-on-windows.md) before installing Dune Docker.
