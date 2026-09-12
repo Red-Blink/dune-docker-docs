@@ -77,6 +77,7 @@
 * [Addon Scheduled Jobs](technical/addons/addon-scheduled-jobs.md)
 * [Addon Hardware Status](technical/addons/hardware-status.md)
 * [Console IAM Architecture](technical/console-iam.md)
+* [Console Authentication Design](technical/rfc-console-auth.md)
 * [Scoped Console API Keys](technical/console/api-keys.md)
 
 ### Discord Integration Internals
