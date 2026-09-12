@@ -37,3 +37,8 @@ Confirm the player was fully offline when required, the operation reported the i
 ### Support request
 
 Run `dune doctor`, capture only relevant logs, redact secrets, and use [Help, Issues, and Requests](../support.md).
+
+## Focused Guides
+
+- [Repair Permission Errors](repair-permission-errors.md)
+- [Docker Desktop, WSL2, Hyper-V, and VMware Network Conflict](docker-desktop-wsl2-network-conflict.md)

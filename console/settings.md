@@ -17,3 +17,5 @@ When Player Portal is disabled, character membership and levels are not read or 
 - Never paste tokens into chat, issue reports, screenshots, or public logs.
 
 Use [Private Console Access with Tailscale](../getting-started/private-console-access.md) when trusted administrators need secure remote browser access without exposing the Console port publicly.
+
+If you cannot sign in, follow [Recover the Admin Web Password](recover-admin-password.md).

@@ -6,7 +6,9 @@
 
 * [Requirements](getting-started/requirements.md)
 * [Installation](getting-started/installation.md)
+* [VMware Workstation and Ubuntu Server](getting-started/vmware-workstation-ubuntu.md)
 * [First Run](getting-started/first-run.md)
+* [Migrate a Hyper-V Database](getting-started/migrate-hyper-v-database.md)
 * [Networking and Ports](getting-started/networking.md)
   * [Private Console Access with Tailscale](getting-started/private-console-access.md)
   * [Local Network NAT Loopback Alternative](getting-started/nat-loopback.md)
@@ -26,7 +28,9 @@
 * [Backups and Restore](console/backups-and-restore.md)
 * [Database](console/database.md)
 * [Updates and QA Builds](console/updates.md)
+  * [Restore a Previous Version](console/restore-previous-version.md)
 * [Settings and Access](console/settings.md)
+  * [Recover the Admin Web Password](console/recover-admin-password.md)
 
 ## Community Services
 
@@ -43,6 +47,8 @@
 * [Multiple Servers on One IP](operations/multiple-servers.md)
 * [Security](operations/security.md)
 * [Troubleshooting](operations/troubleshooting.md)
+  * [Repair Permission Errors](operations/repair-permission-errors.md)
+  * [Docker Desktop, WSL2, Hyper-V, and VMware Network Conflict](operations/docker-desktop-wsl2-network-conflict.md)
 
 ## Reference
 

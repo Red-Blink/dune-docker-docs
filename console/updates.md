@@ -16,6 +16,8 @@ Approved community members can authorize with Discord. The authorization broker 
 
 The recognized roles are managed by the project community. Authorization is per Console and should only be completed from a Console the user trusts.
 
+Need to return to an earlier release? Follow [Restore a Previous Version](restore-previous-version.md).
+
 {% hint style="warning" %}
 Pre-release builds are for testing. Back up first, expect unfinished behavior, and report results—including a clear follow-up—through the QA channel.
 {% endhint %}

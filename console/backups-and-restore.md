@@ -23,3 +23,5 @@ A restore replaces the active database state. Download or preserve important bac
 {% endhint %}
 
 See [Database Backup Identity](../technical/console/database-backups.md) for the full decision matrix.
+
+To move an existing Funcom Hyper-V server, follow [Migrate a Hyper-V Database](../getting-started/migrate-hyper-v-database.md) to export, transfer, import, and restore both required backup files safely.
