@@ -8,6 +8,7 @@
 * [Installation](getting-started/installation.md)
 * [First Run](getting-started/first-run.md)
 * [Networking and Ports](getting-started/networking.md)
+  * [Private Console Access with Tailscale](getting-started/private-console-access.md)
   * [Local Network NAT Loopback Alternative](getting-started/nat-loopback.md)
 
 ## Dune Docker Console
