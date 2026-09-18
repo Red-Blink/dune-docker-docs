@@ -15,11 +15,11 @@ see [base-permissions.md](base-permissions.md).
 
 | Value | Label |
 |---:|---|
-| 1 | Public |
-| 2 | Guild |
+| 1 | Owner |
+| 2 | Co-Owner |
 | 3 | Associate |
-| 4 | Co-Owner |
-| 5 | Owner |
+| 4 | Guild |
+| 5 | Public |
 
 **Associate (3) is "Sub-Fief"**: every top-level base actor and the
 overwhelming majority of child pieces carry exactly this value — it is what a
@@ -31,9 +31,9 @@ Owner) than that default.
 This is confirmed against real data: a production-derived dataset (105
 bases) has every one of 105 top-level actors at exactly `3`, and 1658 of 1673
 child pieces also at `3`. The only deviations were 15 pieces on a single
-base — Generators, a Storage Container, and Ore Refineries — all opened to
-Guild (`2`), evidently so any guild member could refuel and collect from
-them without being added to that base's roster individually. Three of the
+base — Generators, a Storage Container, and Ore Refineries — all set to
+Co-Owner (`2`). The earlier inference that these were Guild-accessible was
+incorrect; in-game reports confirmed the reversed labels. Three of the
 five labels (Associate/Co-Owner/Owner) read the same as roster rank labels;
 this is coincidental — the two scales are stored in different columns, on
 different tables, and do not constrain each other.

@@ -23,7 +23,9 @@ dune maps list
 dune maps mode [map]
 dune maps set <map> <dynamic|always-on|overmap-active|disabled>
 dune maps reconcile
-dune deepdesert layout [status|set|repair]
+dune deepdesert layout status | configured
+dune deepdesert layout set <1|2|3> [--third-role <pve|pvp>] [--yes] [--force]
+dune deepdesert layout repair
 dune deepdesert dual [status|enable|disable|bootstrap|repair]
 dune coriolis [status|scan-once]
 ```
@@ -61,7 +63,9 @@ dune ip-change-restart [enable|disable|status|check-now]
 
 ```text
 dune db backup [output-dir]
+dune db backup-system [output-dir]
 dune db list | status | health
+dune db list-system [output-dir]
 dune db import <backup-file>
 dune db restore <backup-file>
 dune db restore <backup-file> --adopt-backup-battlegroup
@@ -92,12 +96,19 @@ dune network [status|fix]
 ```text
 dune admin players [--online] [--show-full-ids]
 dune admin kick <player-fls-id> [--dry-run] [--yes]
+dune admin kick --all-online [--yes] [--dry-run]
+dune admin login-queues [--all]
+dune admin repair-login-queue <player-fls-id|queue-name> [--yes] [--force]
 dune admin item-search <query>
 dune admin item-list [category]
 dune admin grant-item <player-id|*> <item-name> [quantity] [durability]
 dune admin grant-item-id <player-id|*> <item-id> [quantity] [durability]
+dune admin grant-template <player-id|*> scout-ornithopter-mk6
+dune admin player-location <player-id>
 dune admin award-xp <player-id|*> <amount>
 dune admin skill-points <player-id|*> <points>
+dune admin skill-module <player-id|*> <module> <level>
+dune admin skill-modules [query]
 dune admin specialization-xp <character-name> [options]
 dune admin specialization-max <character-name> [options]
 dune admin refill-water <player-id|*> [amount]
@@ -105,8 +116,17 @@ dune admin clean-inventory <player-id|*>
 dune admin reset-progression <player-id|*>
 dune admin teleport <player-id> <x> <y> <z> [yaw]
 dune admin spawn-vehicle <player-id> <vehicle-id> <template-name> [offset]
+dune admin spawn-vehicle-at <player-id> <vehicle-id> <template-name> <x> <y> <z> [rotation]
+dune admin vehicle-list
 dune admin broadcast-restart-warning <minutes>
 dune admin history
+```
+
+## Server Identity
+
+```text
+dune config title
+dune config title "New Server Name" [--yes] [--no-restart]
 ```
 
 {% hint style="info" %}

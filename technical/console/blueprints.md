@@ -359,10 +359,11 @@ npm ci
 node --test test/blueprints*.test.js test/httpSafety.test.js
 ```
 
-### Additional Security Tests
+### OWASP Top 10 Security Tests
 
-Operators who maintain the optional observability security pipeline can run its
-injected checks against a local repository:
+Additional security tests live in the
+[ops-observability addon](https://github.com/yacketrj/dune-ops-observability-addon/tree/main/pipeline/tests)
+and can be injected into any repo:
 
 ```bash
 bash pipeline/run-security-tests.sh <path-to-repo>
@@ -377,8 +378,9 @@ Covers A01-A10 static analysis checks for the blueprint API surface.
 - **Status**: OPEN
 - **Finding**: Game server crashes (P34) when previewing some imported blueprints in-game
 - **Fixed**: `PlayerBaseBackupId` added to stats JSON to match live solido format
+- **Fixed**: Imported transforms and pentashield scales now use the engine's zero-based PostgreSQL array bounds; existing Console imports are normalized after a successful database update
 - **Verification needed**: Test with different blueprints and map types
-- **Root cause candidates**: hologram flag interaction, transform format mismatch, `building_blueprint_map` empty, invalid building types on target map
+- **Remaining root cause candidates**: hologram flag interaction, `building_blueprint_map` empty, invalid building types on target map
 
 ### Volume Validation
 
@@ -420,4 +422,3 @@ cd console/web && npx vite build
 See [blueprints-report.md](../archive/blueprints-report.md) for the original
 feature specification and test report from PR #80 (historical record, not
 maintained).
-

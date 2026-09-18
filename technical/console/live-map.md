@@ -79,15 +79,15 @@ three independent layers built by `liveMapSpice()`
   `learned-spice-locations.json` that the console grows itself by recording
   every field it has ever seen active. On a `field_id` collision the
   committed archive wins -- it is the higher-confidence source.
-- *Active Spice Fields* reads `dune.resourcefield_state` live
-  (`field_kind_id = 1`), sized by `value_remaining`
-  (`> 150000` Large, `> 5000` Medium, else Small), and positioned by
-  decoding `field_id`'s bit-packing directly when no archive entry exists
-  for it (see below). Every active field observed here feeds the learned
-  pool, tagged `confidence: "decoded"` so a decode-only entry is never
-  presented as more certain than it is.
-- *Flour Sand* (`field_kind_id = 0`) is always decode-only -- there is no
-  historical pool for it on either map.
+- *Active Spice Fields* reads `dune.resourcefield_state` live (every row
+  whose `value_remaining` isn't Flour Sand's fixed 60,000 tier below), sized
+  by `value_remaining` (`> 150000` Large, `> 5000` Medium, else Small), and
+  positioned by decoding `field_id`'s bit-packing directly when no archive
+  entry exists for it (see below). Every active field observed here feeds
+  the learned pool, tagged `confidence: "decoded"` so a decode-only entry is
+  never presented as more certain than it is.
+- *Flour Sand* (`value_remaining = 60000`, its one fixed tier) is always
+  decode-only -- there is no historical pool for it on either map.
 
 `field_id` bit-packs `(x, y, z)` as three 21-bit two's-complement fields
 (`spiceFieldDecode.js`), verified against 350 ground-truth points at 84%

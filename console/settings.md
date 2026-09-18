@@ -19,3 +19,17 @@ When Player Portal is disabled, character membership and levels are not read or 
 Use [Private Console Access with Tailscale](../getting-started/private-console-access.md) when trusted administrators need secure remote browser access without exposing the Console port publicly.
 
 If you cannot sign in, follow [Recover the Admin Web Password](recover-admin-password.md).
+
+## Patch 1.5 Configuration Files
+
+The current dedicated server stores its official difficulty controls in each map server's:
+
+```text
+Saved/Config/LinuxServer/ServerCustomSettings.ini
+```
+
+Stop the Battlegroup before editing this file, set `DifficultyLevel=Custom`, save, and then start the Battlegroup. A running game server can overwrite manual edits while shutting down. The Console's **Building Restriction Limits** setting manages the current `bIsBuildingRestrictionsEnabled` key while preserving the other values in the file.
+
+Retail client overrides now use `Saved/Config/Windows/Game.ini` and `Saved/Config/Windows/Engine.ini`. Do not install them under `WindowsClient`.
+
+See [Server Custom Settings](../technical/console/server-custom-settings.md) for the exact behavior.

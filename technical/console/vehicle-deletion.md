@@ -63,18 +63,19 @@ deletion uses (`dune.permission_actor_destroy` and `dune.delete_actors(bigint[])
 are generic over any actor id, not base-specific, and are composed inside one
 transaction the same way `deleteBaseCompletely` composes them.
 
-## A vehicle-specific guard: `dune.actor_state`
+## A vehicle-specific lifecycle guard
 
 Funcom's own vehicle cleanup procedure — `dune.delete_actors_and_respawns_on_server`,
 invoked by the game's Deep Desert Coriolis-storm mechanism, see
 [base-backups.md](base-backups.md) — refuses to delete a vehicle whose
-`dune.actor_state` is `Travel`, `VehicleBackup`, or `VehicleRecovery`: states
+actor lifecycle state is `Travel`, `VehicleBackup`, or `VehicleRecovery`: states
 meaning the vehicle is mid-overmap-transit with a player attached, or stashed
 pending recovery. Admin deletion honors the same exclusion, transcribed from
 that procedure rather than invented for this feature — a base has no
 equivalent state to check, so this has no base-side counterpart. The check is
-gated on `dune.actor_state` existing at all, so an older schema without that
-table simply skips it rather than breaking.
+stored by patch 1.5 in `dune.actors.state`. The Console retains a compatibility
+adapter for the former `dune.actor_state` table; a schema exposing neither
+form simply skips the guard rather than breaking.
 
 This is not the same operation as the game's own cleanup: Funcom's procedure
 **recovers** a vehicle (via `store_recovered_vehicles_wiped_before_spawn`)

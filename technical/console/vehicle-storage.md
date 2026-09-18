@@ -178,11 +178,9 @@ Unlike base containers, cargo deletion refuses while the vehicle is in
 `Travel`, `VehicleBackup`, or `VehicleRecovery`, reusing the same
 `vehicleBlockedDeleteState` guard whole-vehicle delete already applies.
 
-This was measured before it was adopted: in a real dump, 35 of 91 vehicles sit
-in those states and **every one of them has an empty hold** — all 44 cargo
-stacks live on vehicles with no `dune.actor_state` row. So the guard blocks
-nothing that exists today. It is there to avoid racing the game's own
-stash/recovery flow if that ever stops being true.
+The lifecycle value comes from patch 1.5's `dune.actors.state`, with a fallback
+to the former `dune.actor_state` table for installations still migrating. The
+guard avoids racing the game's own travel, stash, and recovery flow.
 
 The check runs **inside the delete transaction, after the `FOR UPDATE` lock**,
 in `resolveVehicleCargoHold`. A route-level pre-check would be a TOCTOU gap

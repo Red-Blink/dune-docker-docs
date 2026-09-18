@@ -110,6 +110,8 @@ Supported payloads:
 | `currency` | `currencyId`, `amount` |
 | `building-unlock` | `itemId` from the verified Building Sets catalog |
 
+Currency reward IDs are stable across supported game database generations: `0` grants Solaris, while `1` grants the secondary wallet currency (`House Credit` on current servers and `Scrip` on older servers). The core translates these IDs to the database type used by the installed game version, so addons must not write wallet rows directly.
+
 Item and XP rewards wait for the player to be online. Intel waits until the
 player is offline because the live game process can overwrite an online
 database edit. Currency uses the Console's supported database mutation.

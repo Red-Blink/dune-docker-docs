@@ -6,6 +6,7 @@ The Players page combines identity, location, progression, inventories, vehicles
 
 - Character and account identity, online state, map/Sietch, and actual character level.
 - Inventory, crafting/research/building unlocks, and specialization progress.
+- Skill and attribute ranks resolved from the game's cumulative point-cost ladders, including current multi-rank Patch 1.5 abilities.
 - Owned and shared vehicles.
 - Owned and shared bases, using the same expandable details as the global Bases page.
 - Administrative history and actions allowed by the current role.

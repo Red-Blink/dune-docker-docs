@@ -18,6 +18,8 @@ If a backup's Battlegroup ID differs from the current deployment, choose deliber
 
 The Console refuses to guess because characters and server identity are related.
 
+During a restore, Console and addon database activity pauses automatically until PostgreSQL has finished replaying the backup and restoring project-owned triggers. This prevents background tasks from recreating a trigger in the middle of `pg_restore`; no market-history or addon data needs to be deleted manually.
+
 {% hint style="danger" %}
 A restore replaces the active database state. Download or preserve important backups before cleanup, and read the identity warning carefully.
 {% endhint %}

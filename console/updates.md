@@ -4,11 +4,15 @@ The Updates page separates the game server from Dune Docker Console updates.
 
 ## Game Update
 
-Checks and installs Funcom's current dedicated-server content through SteamCMD. Automatic game-update checks can be enabled on a rolling interval.
+Checks and installs Funcom's current dedicated-server content through SteamCMD. Automatic game-update checks can be enabled on a rolling interval. Read-only checks use short, bounded retries and cache a successful result, while an actual installation keeps the longer download retry policy.
+
+After new game files are installed, Dune Docker runs Funcom's database migration before starting the Battlegroup. Project-owned addon schemas and triggers are detached safely for the migration and restored afterward. Do not interrupt this step or close the SSH session when updating from the command line.
+
+If a migration fails, the update stops instead of starting newer game binaries against an older database. Run `runtime/scripts/update-db.sh` to retry it and keep the complete output if support is needed.
 
 ## Console Update
 
-Checks the latest public GitHub release and installs a selected release. The update helper rebuilds and replaces the Console, then the page reconnects to the new build. If reconnection does not occur, **Refresh Now** becomes available.
+Checks the latest public GitHub release and installs a selected release. The update helper rebuilds and replaces the Console, then the page reconnects to the new build. If reconnection does not occur, **Refresh Now** becomes available. Finished, failed, and cancelled updates replace the temporary **Updating** state so the page does not remain stuck on stale progress.
 
 ## QA Tester Access
 

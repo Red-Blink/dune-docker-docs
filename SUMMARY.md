@@ -31,6 +31,7 @@
   * [Restore a Previous Version](console/restore-previous-version.md)
 * [Settings and Access](console/settings.md)
   * [Recover the Admin Web Password](console/recover-admin-password.md)
+  * [Server Custom Settings](technical/console/server-custom-settings.md)
 
 ## Community Services
 

@@ -1,13 +1,11 @@
 # Market Board (Exchange)
 
-**Status:** Current | **Last Updated:** August 2026
+**Status:** Current | **Last Updated:** September 2026
 
 The Market Board is a **read-only** view of the in-game CHOAM exchange. It reads the
 game's own exchange tables (the game writes them; the console never mutates them) so
 an admin can see what is currently listed for sale — prices, stock, and sellers — at
-a glance. It is modeled on the Market tab from
-[Icehunter/dune-admin](https://github.com/Icehunter/dune-admin), rendered in the
-console's own theme and components.
+a glance, using the Console's theme and components.
 
 See [API-REFERENCE.md](API-REFERENCE.md#market-board) for the endpoint contract.
 
@@ -235,6 +233,49 @@ Exchange Bot addon drives through the scheduler bridge, now first-class):
   at save time. Seed and buyback share one running lock, so they can never write the
   exchange concurrently.
 
+### In-game weapon categories
+
+The CHOAM client filters listings with Funcom's
+`dune.get_exchange_orders_by_mask(mask, depth)`, which is a **prefix** match
+on `category_mask` at the selected folder depth. The Weapons tab's depth-2
+folders are Melee (0), Ranged (1), Ammunition (2), and Unique Schematics (3)
+in the game's category hierarchy.
+
+The legacy seed mapping placed melee under folder 0 at depth 3, but
+left each ranged type as a depth-2 sibling (`pistol=2` … `lasgun=13`,
+`ammunition=14`). Seeded Maula pistols therefore sat at `0x01020000` depth 2
+— the Ammunition folder — and were the only items that folder showed, while
+Ranged Weapons (`0x0101xxxx`) was empty. Unique schematics already used
+folder 3 correctly (Maula patterns at `0x01030200`).
+
+The bundled seed plan, plus seed/buyback/CSV load, now nest those guessed
+gun types under Ranged Weapons at depth 3 (Maula `0x01010200`) and move
+ammunition to `0x01020000`. The gun remap applies only to `equippable`
+rows, so a custom schematic sitting in Unique Schematics (`0x01030000`
+depth 2) is not pulled into Ranged Weapons subtype 3. This Console seeds
+from a static plan, so it corrects the map before use. A reseed is required
+for already-listed NPC orders to pick up the new masks.
+
+### In-game vehicle categories
+
+The Vehicles tab's depth-2 folders are One-Man Groundcar (0), Buggy (1), Light
+Ornithopter (2), Medium Ornithopter (3), Carry-all (4), Sandcrawler (5), and
+Unique Schematics (6). The legacy mapping had no treadwheel category,
+so Lost Harvest Treadwheel parts were filed under Sandcrawler (`0x0205xxxx`)
+with the same depth-3 slots Sandbike uses (chassis, hull, engine, PSU, treads,
+utility). Unique Treadwheel schematics used Sandcrawler's unique slot
+(`0x02060500`). Funcom's CHOAM UI treats Treadwheel as a One-Man Groundcar
+alongside Sandbike, so those parts showed up in Sandcrawler.
+
+The bundled seed plan, plus seed/buyback/CSV load, now move `Treadwheel*`
+equippables to One-Man Groundcar (`0x0200xxxx`, same depth-3 slot) and
+`Treadwheel*` unique schematics to the One-Man unique slot (`0x02060000`).
+The remap keys off the `Treadwheel` template-id prefix and kind, so real
+`Sandcrawler*` parts and unique schematics stay in folder 5. Other CHOAM
+tabs (Garments, Utility, Augmentations, Misc) already match their intended
+folder families; ranged weapons were corrected separately. A reseed is
+required for already-listed NPC orders to pick up the new masks.
+
 ### Bot items (catalog overrides)
 
 The **Bot items** tab, alongside the read-only **Exchange** tab, lets an admin
@@ -289,5 +330,3 @@ hides* listings. The Market Bot above is the deliberate exception: its seed and
 buyback runs write the game's exchange tables, always behind an explicit RBAC
 action, a confirm dialog (for manual runs), an audit entry, and a pre-write
 database backup.
-
-

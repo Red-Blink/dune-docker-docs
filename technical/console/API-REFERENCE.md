@@ -108,6 +108,11 @@ When the Restart Queue is enabled, the restart routes above (`/api/server/restar
 | POST | `/api/updates/auto-game` | Save auto-update config | `enabled`, `intervalMinutes`, `applyEnabled`, `notifyEnabled`, `notifyMinutes`, `waitUntilEmpty`, `maxWaitMinutes`, `confirmation` |
 | POST | `/api/updates/repair-runtime` | Repair runtime installation | None |
 
+Successful game checks are cached for 30 minutes in
+`runtime/generated/game-update-check.json`, including across Console restarts.
+Authenticated browser requests may pass `fresh: true` to force a live Steam
+query; API keys always use the shared cached path.
+
 ---
 
 ## Backups
@@ -149,7 +154,7 @@ Player rows include `total_playtime_seconds`. The console samples `player_state.
 | GET | `/api/players/{playerId}/solaris-coin` | Get Solaris Coin total | `playerId` |
 | GET | `/api/players/{playerId}/factions` | Get faction reputation | `playerId` |
 | GET | `/api/players/{playerId}/intel` | Get intel data | `playerId` |
-| GET | `/api/players/{playerId}/specs` | Get skill specializations | `playerId` |
+| GET | `/api/players/{playerId}/specs` | Get skill specializations. Each `skillModules` row carries the raw `skill_points_spent` (the game stores a cumulative point *cost*, not a rank) plus `max_level` from the catalog and the `level` resolved against that module's `pointLadder` in `runtime/data/admin-skill-modules.json` — read `level` for the rank | `playerId` |
 | GET | `/api/players/{playerId}/position` | Get player position on map | `playerId` |
 | GET | `/api/players/{playerId}/progression` | Get level and progression | `playerId` |
 | GET | `/api/players/{playerId}/vitals` | Get health/hydration/addiction | `playerId` |
@@ -429,10 +434,11 @@ always immediate rather than queued when the map is live. See
 name, type, owner, map, and exact id. Response fields mirror the paginated-list
 convention (`rows`, `totalCount`, unfiltered `totalVehicles`). Owner resolves from
 the rank-1 permission holder, falling back to the actor's account owner; the
-`shared_with` roster is the rank 2/3 holders. A component's maximum durability is
-read from its own stats blob (`MaxDurability`, else the decayed cap). If no stored
-maximum exists, it is inferred only when at least two non-null current-durability
-observations exist for the same template; inferred rows set `maxInferred: true`.
+`shared_with` roster is the rank 2/3 holders. A component's maximum durability uses
+a verified game-data override when one is available, then its own stats blob
+(`MaxDurability`, else the decayed cap). If no known or stored maximum exists, it
+is inferred only when at least two non-null current-durability observations exist
+for the same template; inferred rows set `maxInferred: true`.
 Missing current durability remains null and is never treated as 0% or 100%.
 `condition_percent` is the lowest comparable component and
 `condition_estimated` reports whether an inferred maximum contributed. Fuel

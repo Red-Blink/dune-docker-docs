@@ -21,6 +21,10 @@ Maps configured by the Director for one party per instance can scale to multiple
 
 Cleanup for these activity maps runs after shutdown. A cleanup problem is reported without blocking the next map start.
 
+## Current Story Maps
+
+Patch 1.5 introduced the connected story maps **Arrakeen Spaceport & Zanovar** (`CB_Story_DestroyedZanovar`) and **Sardaukar Orbital Monitor** (`CB_Story_OrbitalMonitor`). The first internal map contains both the Spaceport and Zanovar portions of the story; progression transfers the player to the Orbital Monitor map.
+
 ## Deep Desert Layouts
 
 Choose one, two, or three Deep Desert instances. In a mixed layout:
