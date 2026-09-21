@@ -14,8 +14,13 @@ File Browser, set `DifficultyLevel=Custom`, save, and then start the
 Battlegroup. Editing a running server's copy is unsafe because the game can
 overwrite it while shutting down.
 
-The Console's **Building Restriction Limits** control remains supported. It
-now materializes the patch-1.5 `bIsBuildingRestrictionsEnabled` key in
+The Console exposes the supported values under **Maps -> Interactive Modifiers
+-> Custom Settings**. Enumerated settings use dropdowns, booleans use switches,
+and numeric fields enforce the minimum and maximum values published in Funcom's
+server template. Invalid values are rejected by both the page and the API.
+
+The **Building Restriction Limits** control remains supported. It materializes
+the patch-1.5 `bIsBuildingRestrictionsEnabled` key in
 `ServerCustomSettings.ini` as well as retaining the legacy profile value for
 older server builds. Dune Docker writes the native file after the old game
 container has stopped, so the saved value survives shutdown and applies on

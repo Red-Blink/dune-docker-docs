@@ -27,3 +27,13 @@ A restore replaces the active database state. Download or preserve important bac
 See [Database Backup Identity](../technical/console/database-backups.md) for the full decision matrix.
 
 To move an existing Funcom Hyper-V server, follow [Migrate a Hyper-V Database](../getting-started/migrate-hyper-v-database.md) to export, transfer, import, and restore both required backup files safely.
+
+## Encrypted System Backups
+
+A database backup contains game data but not the host configuration. Use **System Backups (Encrypted)** when moving or rebuilding an entire Dune Docker installation. A system backup contains a fresh database dump together with `.env`, `runtime/generated`, and `runtime/secrets`, including the Funcom token and Console credentials.
+
+Choose a strong passphrase and keep it somewhere separate from the archive. The passphrase cannot be recovered by the project. The Console can create, download, import, preview, and restore these archives without buffering a multi-gigabyte upload in memory.
+
+On a new host, the first-run wizard can install the required game files and restore a system backup before the Battlegroup is started. A restore previews its effects first, preserves the replaced local state in a safety copy, restores the database and configuration, starts the restored Battlegroup, and reloads the Console. A restore launched later from the Backups page instead leaves Dune services stopped for you to start from Server Control after reviewing the result.
+
+See [Database and System Backups](../technical/console/database-backups.md) for migration steps, identity choices, retention, security, and command-line equivalents.

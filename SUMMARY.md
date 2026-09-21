@@ -69,7 +69,7 @@
 * [Base Permissions](technical/console/base-permissions.md)
 * [Base Deletion](technical/console/base-deletion.md)
 * [Base Backup Actors](technical/console/base-backups.md)
-* [Database Backup Identity](technical/console/database-backups.md)
+* [Database and System Backups](technical/console/database-backups.md)
 * [Restart Queue](technical/console/restart-queue.md)
 * [Vehicle Permissions](technical/console/vehicle-permissions.md)
 * [Vehicle Storage Contents](technical/console/vehicle-storage.md)

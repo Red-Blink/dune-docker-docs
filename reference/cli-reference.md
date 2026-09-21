@@ -48,6 +48,7 @@ dune sietches sync | validate
 ```text
 dune update check
 dune update [--yes]
+dune update install-assets [--force]
 dune update auto enable [interval-minutes]
 dune update auto disable | status
 dune self-update check | list
@@ -66,6 +67,7 @@ dune db backup [output-dir]
 dune db backup-system [output-dir]
 dune db list | status | health
 dune db list-system [output-dir]
+dune db restore-system <archive> [--dry-run]
 dune db import <backup-file>
 dune db restore <backup-file>
 dune db restore <backup-file> --adopt-backup-battlegroup
@@ -76,6 +78,7 @@ dune db auto disable | status
 dune db auto retention <days|off>
 dune db transfer [options] <old-fls-id> <new-fls-id>
 dune database [status|schemas|tables|counts|columns|preview|sql|export]
+dune console reload
 ```
 
 ## Memory, Storage, and Metrics

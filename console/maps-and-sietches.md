@@ -21,6 +21,10 @@ Maps configured by the Director for one party per instance can scale to multiple
 
 Cleanup for these activity maps runs after shutdown. A cleanup problem is reported without blocking the next map start.
 
+## CHOAM Terminal Positions
+
+Interactive Modifiers can place a CHOAM terminal at a trade post's shipped position or capture a custom position from a standing player. The Console waits for a fresh game position update, validates that the result remains close to the selected trade post, and lets you save or apply it. An installed terminal must be reinstalled to move, and its map must restart before the new position appears in game.
+
 ## Current Story Maps
 
 Patch 1.5 introduced the connected story maps **Arrakeen Spaceport & Zanovar** (`CB_Story_DestroyedZanovar`) and **Sardaukar Orbital Monitor** (`CB_Story_OrbitalMonitor`). The first internal map contains both the Spaceport and Zanovar portions of the story; progression transfers the player to the Orbital Monitor map.

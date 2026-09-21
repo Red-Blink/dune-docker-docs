@@ -1,6 +1,6 @@
 # API Keys
 
-**Status:** Current | **Last Updated:** August 2026
+**Status:** Current | **Last Updated:** September 2026
 
 Named, revocable credentials for calling the Console HTTP API from outside the browser — a
 Grafana panel, a Discord bot, a community stats site, a monitoring script. Managed from the
@@ -17,9 +17,11 @@ engine, [API-REFERENCE.md](API-REFERENCE.md) for the management endpoints.
 ## Using a key
 
 ```bash
-curl -H "Authorization: Bearer dak_7f3c1a9b_xK2p9vRmQ4tLbN8wZfH3jY6cD1sA5eU7gT0nB" \
+curl -H "Authorization: Bearer <API_KEY>" \
   http://localhost:8088/api/players
 ```
+
+Replace `<API_KEY>` with the key shown once when it is created.
 
 Keys use the same `Authorization: Bearer` header as the Discord adapter. No cookie and no
 CSRF token are involved: CSRF protects against a hostile page riding an ambient credential,
@@ -105,9 +107,9 @@ namespace" rule, so Create stays disabled until something is selected.
 | `sietches` | `sietches:read` | `write` |
 | `deepdesert` | `deepdesert:read` | `write` |
 | `landsraad` | `landsraad:read` | `write` |
-| `server` | `server:read` | `network-fix`, `restart`, `restart-service`, `start`, `stop`, `storage-cleanup`, `write-config` |
+| `server` | `server:read` | `console-reload`, `network-fix`, `restart`, `restart-service`, `start`, `stop`, `storage-cleanup`, `write-config` |
 | `logs` | `logs:read` | *nothing — no write action exists* |
-| `backups` | `backups:read` | `create`, `delete`, `import`, `restore`, `write-config` |
+| `backups` | `backups:read` | `create`, `create-system`, `delete`, `delete-system`, `import`, `restore`, `write-config`; system download, import, and restore require explicit actions |
 | `updates` | `updates:check`, `updates:read` | *nothing — write actions are denied to keys* |
 | `carepackage` | `carepackage:read` | `clear-history`, `grant`, `scan`, `write-config` |
 | `addons` | `addons:read` | *nothing — write actions are denied to keys* |
@@ -134,6 +136,21 @@ Two actions are POST-shaped but read-only in effect, and are reachable by a **Re
 
 `carepackage:scan` is deliberately *not* one of these: `POST /api/care-package/run` actually
 runs a grant cycle. The verb-shaped name is not the test; what the route does is.
+
+### System-backup actions
+
+`backups:download-system`, `backups:import-system`, and
+`backups:restore-system` are granted only when they are named explicitly in a
+key's Custom action list. Even `{"backups": "write"}` does not receive them.
+This prevents an older database-backup integration from silently gaining
+access to `.env`, Console credentials, IAM policies, and every file in
+`runtime/secrets` after an update.
+
+Creating and deleting system backups remain independently grantable as
+`backups:create-system` and `backups:delete-system`. Listing their non-secret
+sidecar metadata uses `backups:read`. Downloading an archive, importing one
+from another host, or applying its configuration requires the corresponding
+explicit high-impact action.
 
 ### What a key can never reach
 

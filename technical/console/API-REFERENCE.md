@@ -1,6 +1,6 @@
 # Dune: Awakening Console API Reference
 
-**Status:** Current | **Last Updated:** August 2026
+**Status:** Current | **Last Updated:** September 2026
 
 Complete reference for all HTTP API endpoints in the Dune Docker Console. All endpoints require authentication unless otherwise noted — either a browser session (session cookie + CSRF token) or a scoped API key sent as `Authorization: Bearer <key>`. See [api-keys.md](api-keys.md) for how key scopes are granted and what they can never reach.
 
@@ -102,6 +102,8 @@ When the Restart Queue is enabled, the restart routes above (`/api/server/restar
 | POST | `/api/updates/check-game` | Check for game updates | `fresh?` (boolean) |
 | POST | `/api/updates/apply-game` | Apply game updates | None |
 | POST | `/api/updates/fix-steamcmd` | Fix SteamCMD issues | None |
+| POST | `/api/updates/install-assets` | Install game files and images without creating or migrating a database | None |
+| POST | `/api/console/reload` | Recreate the Console so it reads a changed `.env`; does not rebuild its image or restart the Battlegroup | None |
 | POST | `/api/updates/check-stack` | Check for stack updates | None |
 | POST | `/api/updates/apply-stack` | Apply stack updates | None |
 | GET | `/api/updates/auto-game` | Get auto-update status | None |
@@ -122,12 +124,23 @@ query; API keys always use the shared cached path.
 | GET | `/api/backups` | List all backups | None |
 | POST | `/api/backups/create` | Create new backup | None |
 | POST | `/api/backups/restore` | Restore from backup | `backup` (string, filename) |
-| GET | `/api/backups/{backup}/download` | Download backup archive | `backup` (string) |
+| GET | `/api/backups/{backup}/download` | Download backup archive (dump and metadata) | `backup` (string) |
 | DELETE | `/api/backups/{backup}` | Delete backup | `backup` (string) |
 | POST | `/api/backups/delete-all` | Delete all backups | None |
 | POST | `/api/backups/import-external` | Import external backup | multipart form: `backup`, `metadata` |
+| GET | `/api/backups/system` | List encrypted system backups using non-secret sidecar metadata | None |
+| POST | `/api/backups/system/create` | Create an encrypted database, configuration, and secrets backup | `passphrase` (12-1024 characters, at least 5 different characters) |
+| POST | `/api/backups/system/import` | Stream-upload a Console `.tar` bundle or bare `.tar.gz.enc` archive | `filename` and `onConflict` (`overwrite` or `rename`) query parameters |
+| GET | `/api/backups/system/{name}/download` | Stream-download the archive and sidecar as one `.tar`; `?raw=1` returns the encrypted archive only | `name`, `raw?` |
+| DELETE | `/api/backups/system/{name}` | Delete one system backup and its sidecar | `name` |
+| POST | `/api/backups/system/delete-selected` | Delete selected system backups | `backups` (string array) |
+| POST | `/api/backups/system/delete-all` | Delete every system backup | None |
+| POST | `/api/backups/system/{name}/restore` | Preview or apply a database, configuration, and secrets restore; apply requires a successful preview by the same caller | `passphrase`, `apply?`, `identityMode?`, `auditLogMode?` |
 | GET | `/api/backups/auto` | Get auto-backup status | None |
 | POST | `/api/backups/auto` | Save auto-backup config | `enabled`, `time`, `retentionDays`, `intervalHours` |
+
+See [Database and System Backups](database-backups.md) for passphrase,
+Battlegroup identity, audit-history, migration, and restore-preview rules.
 
 ---
 
@@ -644,6 +657,15 @@ See [blueprints.md](blueprints.md) for the full import/export design.
 | GET | `/api/maps/choam-terminals` | Get CHOAM terminal overview | None |
 | POST | `/api/maps/choam-terminals` | Install CHOAM terminals | `tradeCenterKey` |
 | DELETE | `/api/maps/choam-terminals` | Remove CHOAM terminals | `tradeCenterKey` |
+| GET | `/api/maps/choam-terminals/capture` | Poll for a fresh player position and preview terminal placement | `tradeCenterKey`, `playerId`, then returned `afterSerial`, position, and yaw fields on later polls |
+| POST | `/api/maps/choam-terminals/position` | Save a bounded custom terminal position | `tradeCenterKey`, `x`, `y`, `z`, `yaw`, `sourcePlayerId?`, `applyNow?` |
+| DELETE | `/api/maps/choam-terminals/position` | Remove a custom position and restore the shipped default | `tradeCenterKey` |
+
+Custom terminal positions are validated against the selected trade post's
+shipped position. Capture polls until the player's database heartbeat advances,
+so a stale actor position is not accepted as current. Applying a position can
+reinstall the terminal transactionally, but its map must still restart before
+the move appears in game.
 
 ### Combat & User Settings
 

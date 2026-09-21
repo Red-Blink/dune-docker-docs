@@ -10,9 +10,13 @@ After new game files are installed, Dune Docker runs Funcom's database migration
 
 If a migration fails, the update stops instead of starting newer game binaries against an older database. Run `runtime/scripts/update-db.sh` to retry it and keep the complete output if support is needed.
 
+**Install Game Files** downloads the dedicated-server depot and loads its container images without creating, migrating, or resetting a database. It is intended for a fresh host that will immediately restore an encrypted system backup. It refuses to run while a world server is active.
+
 ## Console Update
 
 Checks the latest public GitHub release and installs a selected release. The update helper rebuilds and replaces the Console, then the page reconnects to the new build. If reconnection does not occur, **Refresh Now** becomes available. Finished, failed, and cancelled updates replace the temporary **Updating** state so the page does not remain stuck on stale progress.
+
+Release notes may require a Battlegroup restart when an update changes a running service such as the Autoscaler. Rebuilding the Console alone does not reload those processes; follow the update note for the version you install.
 
 ## QA Tester Access
 
