@@ -176,7 +176,9 @@ granting it never implies cargo deletion. Both directions are pinned in
 
 Unlike base containers, cargo deletion refuses while the vehicle is in
 `Travel`, `VehicleBackup`, or `VehicleRecovery`, reusing the same
-`vehicleBlockedDeleteState` guard whole-vehicle delete already applies.
+`vehicleBlockedDeleteState` guard whole-vehicle delete already applies. The
+refusal names the state with the label the Vehicles list shows (In Transit,
+Vehicle Backup, Stored for Recovery), not the raw enum value.
 
 The lifecycle value comes from patch 1.5's `dune.actors.state`, with a fallback
 to the former `dune.actor_state` table for installations still migrating. The

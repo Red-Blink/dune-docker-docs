@@ -11,7 +11,7 @@ When Player Portal is disabled, character membership and levels are not read or 
 ## Console Access
 
 - Change the shared administrator password from Settings.
-- Use authorization policies/roles instead of broadly sharing owner access.
+- Give integrations scoped API keys rather than sharing the administrator password.
 - Create named, revocable API keys with only the Read or Read + Write namespaces an external tool needs. Keys cannot reach setup, Console settings, or raw database operations.
 - Keep port `8088` private to trusted administrators or protect it through a secure private network/reverse proxy.
 - Never paste tokens into chat, issue reports, screenshots, or public logs.
@@ -28,8 +28,17 @@ The current dedicated server stores its official difficulty controls in each map
 Saved/Config/LinuxServer/ServerCustomSettings.ini
 ```
 
-Use **Maps -> Interactive Modifiers -> Custom Settings** for the supported controls. The Console supplies dropdowns for documented choices and enforces Funcom's numeric ranges before saving. For a setting that is not exposed, stop the Battlegroup before editing the file manually, set `DifficultyLevel=Custom`, save, and then start the Battlegroup. A running game server can overwrite manual edits while shutting down.
+Use **Maps → Interactive Modifiers → Custom Settings** for the supported controls. The Console supplies dropdowns and validates numeric values. Some documented maxima are recommendations rather than hard limits; supported overrides can exceed them. The managed source is `runtime/generated/gameplay-profile.ini`, applied to map configuration on startup. Do not change a managed setting by editing only a map's generated file.
 
 Retail client overrides now use `Saved/Config/Windows/Game.ini` and `Saved/Config/Windows/Engine.ini`. Do not install them under `WindowsClient`.
 
 See [Server Custom Settings](../technical/console/server-custom-settings.md) for the exact behavior.
+
+## Common Settings Tasks
+
+- [Control automatic Battlegroup startup](../how-to/server-startup.md).
+- [Change the Console browser port](../how-to/change-game-ports.md#change-only-the-browser-console-port).
+- [Enable experimental Regis Tanks](../how-to/regis-tanks.md).
+- Claim your public listing through **Public Listing Profile**: generate a claim code on the website, paste it into the Console, and verify it.
+
+A Sietch's game password is changed under **Maps**, not Login Password. Follow [Set a Sietch Password](../how-to/sietch-password.md).

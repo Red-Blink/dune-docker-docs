@@ -2,6 +2,10 @@
 
 Run commands from the project directory with `dune` available on the path. Use `dune --help` on your installed version for the exact current syntax.
 
+If `dune` is not on your path, replace it with `runtime/scripts/dune` from the project folder. The blocks below are a command reference, not a script to paste and run in full. Start/stop, restore, delete, and repair commands can affect players or saved data.
+
+For browser-first instructions, see [How Do I...?](../how-to/README.md). Experimental tank status can be inspected with `runtime/scripts/dune experimental-tanks status`; use the [Regis Tanks guide](../how-to/regis-tanks.md) before changing it.
+
 ## Core and Diagnostics
 
 ```text

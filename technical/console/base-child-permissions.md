@@ -1,6 +1,6 @@
 # Base permissions (per-piece access level)
 
-**Status:** Current | **Last Updated:** August 2026
+**Status:** Current | **Last Updated:** October 2026
 
 The Bases panel's **Base Permissions** tab lists every individual piece
 (door, device, and the base's own totem) on a claimed base along with its
@@ -160,17 +160,20 @@ categorization, not the Inventory tab's `BASE_INVENTORY_TYPES`: most child
 pieces here (doors, generators, turbines, the totem) carry no inventory at
 all and would all land in "other" under that map. Storage/Refining/Crafting
 still borrow its curated building-type keys for consistent naming;
-Generators, Water Storage, Pentashield, and Door are simple case-insensitive
-substring rules ("generator"/"turbine", "water", "pentashield", "door"
-anywhere in the building type), so e.g. `BloodWaterExtractionAdvanced_Placeable`
-counts as Water Storage and `Choam_PentashieldSurfaceVertical_Placeable`
-counts as Pentashield. Sub-Fief is different: it's not a substring rule but
-the `is_child = false` row itself — the base's own totem, always exactly
-one, regardless of its building type. Only categories actually present on
-this base appear in the dropdown. **Select All** only checks the pieces the current filter is
-showing — a piece checked earlier under a
-different filter stays checked even once it scrolls out of view, but Select
-All itself never reaches into pieces the filter is hiding. The **Apply**
+Generators, Water Storage, Pentashield, and Door are simple
+case-insensitive substring rules ("generator"/"turbine", "water",
+"pentashield", "door" anywhere in the building type), so e.g.
+`BloodWaterExtractionAdvanced_Placeable` counts as Water Storage and
+`Choam_PentashieldSurfaceVertical_Placeable` counts as Pentashield. Door is
+checked before Water Storage, so the Watershippers cosmetic doors
+(`MTX_Watershippers_Door_Placeable`) count as Door despite "water" in their
+name. Sub-Fief is different: it's not a substring rule but the
+`is_child = false` row itself — the base's own totem, always exactly one,
+regardless of its building type. Only categories actually present on this
+base appear in the dropdown. **Select All** only checks the pieces the
+current filter is showing — a piece checked earlier under a different
+filter stays checked even once it scrolls out of view, but Select All
+itself never reaches into pieces the filter is hiding. The **Apply**
 dropdown (defaulting to Associate) plus **Apply to Selected** stages every
 currently checked row — regardless of the active filter — to whichever
 level is chosen, the general form of "put these back to Sub-Fief" (pick
@@ -180,8 +183,10 @@ Associate) or any other bulk change.
 
 The tab is hidden entirely unless `listBases` reports
 `capabilities.baseChildAccess`, probed once per list request the same way
-`basePermissions` is. That requires `dune.buildings`, `dune.building_instances`,
-`dune.placeables`, `dune.permission_actor`, and the
+`basePermissions` is. That requires `dune.buildings`,
+`dune.building_instances`, `dune.placeables`, `dune.permission_actor`,
+`dune.actor_fgl_entities`, `dune.actors`, `dune.map_names` (the last three
+are walked on save to resolve the base's own actor), and the
 `dune.permission_set_access_level(bigint,smallint)` procedure.
 
 ## Related

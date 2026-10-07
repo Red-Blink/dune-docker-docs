@@ -2,7 +2,17 @@
 
 Multiple isolated Battlegroups can share one public IPv4 address only when every instance has a non-overlapping port profile and the router/firewall forwards each range correctly.
 
-Each installation needs unique Console, messaging, HTTP, Gateway, and UDP map ports, plus an isolated Compose/project identity and data paths. Hairpin/NAT behavior must also work for local clients using the public address.
+Use a separate Linux VM with its own Docker daemon for each Battlegroup. The project uses fixed container names: different project folders or Compose project names alone do not isolate two installations on the same Docker daemon.
+
+Each installation needs an appropriate non-overlapping port profile and independent data. Hairpin/NAT behavior must also work for local clients using the public address. Changing only game UDP ports is insufficient because Console and messaging endpoints also need separation.
+
+The project includes `runtime/scripts/multi-server-config.py` to plan, apply, and verify profiles. Start with its read-only plan from the project folder:
+
+```bash
+python3 runtime/scripts/multi-server-config.py plan --instances 2
+```
+
+Review the full guide before applying a profile; applying configuration does not itself update router rules or restart services.
 
 The optional public-directory probe uses UDP `32000–32015` for direct latency. Its fixed range is not rewritten by the multi-server profile tool; relay fallback remains available where the direct path cannot be routed.
 

@@ -1,6 +1,6 @@
 # Generator refill caps
 
-**Status:** Current | **Last Updated:** August 2026
+**Status:** Current | **Last Updated:** October 2026
 
 `POST /api/bases/:baseId/refill-generators` tops every power device at a base
 up to a per-type fuel cap. The defaults live in the `refill` block of
@@ -17,10 +17,30 @@ for how those same generator types map to burn durations.
 | `spice` | Spice-infused Fuel Cell (`SpicedFuelCell`) | 499 | 1 | 499 |
 | `windTurbineOmni` | Low-grade Lubricant (`WindTurbineLubricant1`) | 100 | 5 | 499 |
 | `windTurbineDirectional` | Industrial-grade Lubricant (`WindTurbineLubricant2`) | 100 | 5 | 499 |
+| `windtrap` | Windtrap Filter (tier 1 or 2) | 5 | 1 | 5 |
+| `largeWindtrap` | Windtrap Filter (tier 3 or 4) | 5 | 1 | 5 |
 
 Turbines cap at 499 across 5 stacks (4x100 + 1x99) because the game's stack
 size for lubricant is 100, unlike the 499-cap Fuel Cell and Spice-infused
 Fuel Cell items.
+
+Windtrap filters cap at 5 — the game's inventory for a windtrap is 5 slots
+with max_item_volume 25, and each filter is volume 5, so 5 filters exactly
+fills the space. The refill only counts slots, so `GENERATOR_TYPES` sets
+`volumeCap: 5` on both types and an override's totalCap is clamped to it.
+The tier written is not configurable: a refill keeps the tier the windtrap
+already holds or burns, and only an empty, idle one gets the default
+(`WindTrapFilter2`, or `WindTrapFilter4` for a Large Windtrap).
+
+Windtraps are refilled with the generators and get their own Power-tab cards,
+but they are kept out of the base-level generator totals (`generatorCount`,
+the lowest queued reserve, and the "no generators have queued fuel" alert).
+The base list reports them separately as `windtrapCount`. A filter reserve says
+nothing about power, and a 5-filter windtrap would otherwise become every
+base's lowest reserve.
+
+Holograms (placed but unbuilt pieces, `placeables.is_hologram`) are never
+counted or refilled, for generators and windtraps alike.
 
 ## Overriding the defaults
 
@@ -57,7 +77,7 @@ can't request an oversized insert:
 |---|---:|---:|
 | `stackSize` | 1 | 10000 |
 | `maxStacks` | 1 | 50 |
-| `totalCap` | 1 | `stackSize * maxStacks` (post-clamp) |
+| `totalCap` | 1 | `stackSize * maxStacks` (post-clamp), and never above `volumeCap` (5 for windtraps) |
 
 A non-numeric or out-of-range value falls back to that type's default rather
 than erroring the whole request. An unreadable or invalid JSON file is logged
@@ -77,5 +97,4 @@ partial refill worth surfacing to the operator.
 
 See [generator-fuel-burn-rates.md](generator-fuel-burn-rates.md) for how these
 same generator types map to their normal per-unit fuel burn rates.
-
 

@@ -33,7 +33,7 @@ That is what caught `AdvancedVehicleFabricator_Placeable` being **singular** whi
 
 `SpiceSilo_Placeable` and `SmallStorageContainer_Placeable` are both listed and both labelled "Small Storage Container": the former is the legacy name every live placement still carries (48 on production against 0 of the latter), the latter is the asset name shipped in the paks. Anything not listed is omitted rather than bucketed, matching the allowlist reasoning in `portalGeneratorFuel`'s `generator_spec` CTE — an unrecognised placeable must not acquire a group and report an invented fill level.
 
-Generator and windtrap fuel is deliberately absent; the Power and Water tabs own it.
+Generator fuel and windtrap filters are deliberately absent; the Power tab owns them. Stored water on windtraps is owned by the Water tab.
 
 ## Why not classify on `inventory_type`
 
@@ -88,7 +88,7 @@ agreed to. The overlay is a snapshot, so this case is reachable in normal use.
 **Ownership is re-resolved, never trusted.** The delete re-runs this page's claim CTEs from the base id
 rather than believing the `placeableId` it was handed, and keeps the `inventory_types` allowlist join plus
 `is_hologram = false` and `max_item_count >= 0`. That allowlist is what stops a delete reaching the
-generator and windtrap fuel inventories the Power and Water tabs own — a placeable outside
+generator fuel and windtrap filter inventories the Power tab owns — a placeable outside
 `BASE_INVENTORY_TYPES` answers "not found" even when it genuinely belongs to the base.
 
 The row lock is `for update of i, inv`, not a bare `for update`: Postgres cannot lock a CTE reference, and
@@ -848,5 +848,4 @@ by Give/Fill/Delete the same way any other Storage container is — it happens t
 operator granting `Developer_Storage_Container_Patent` to a player via Players → Building Sets → "Show
 Experimental," but nothing about that origin changes how this page treats the resulting placeable. A
 dedicated test locks this in so a future change cannot silently carve it out.
-
 

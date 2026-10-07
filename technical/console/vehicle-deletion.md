@@ -1,6 +1,6 @@
 # Vehicle deletion
 
-**Status:** Current | **Last Updated:** August 2026
+**Status:** Current | **Last Updated:** October 2026
 
 The Vehicles panel can permanently delete a vehicle and everything fitted or
 stored on it. The action lives as a **Delete Vehicle** row action (trash icon)
@@ -77,6 +77,56 @@ stored by patch 1.5 in `dune.actors.state`. The Console retains a compatibility
 adapter for the former `dune.actor_state` table; a schema exposing neither
 form simply skips the guard rather than breaking.
 
+The refusal names the state with the label the Vehicles list shows for it
+(In Transit, Vehicle Backup, Stored for Recovery) rather than the raw enum
+value. The list marks Delete as unavailable on such a row, with a shorter
+tooltip that leads with the same label; the button stays focusable
+(`aria-disabled`) so the reason can be read from the keyboard. A Stored for
+Recovery row is the exception where the server supports the stored delete
+below: there the button is enabled and opens that dialog instead. The recovery
+wording deliberately does not say "until its owner recovers it" -- an expired
+`Normal` recovery may never be recoverable.
+
+### Stored vehicles still have an owner
+
+Putting a vehicle into recovery destroys its permission roster
+(`store_recovered_vehicles_wiped_before_spawn` calls `permission_actor_destroy`
+so stored vehicles stop counting toward the vehicle limit) and clears
+`actors.owner_account_id`. The owner is kept in
+`dune.recovered_vehicles.character_id` instead, a `player_state.id`;
+`dune.backup_vehicles` records its owner the same way. `listVehicles` falls
+back to both, so a stored vehicle shows the player it is held for rather than
+reading as unowned. `Normal` recoveries can only be restored in-game within the
+server's restore time limit; `Migrated` and `RecoveredFromLostState` ones (see
+`dune.move_vehicles_in_lost_state_to_recovery`) do not expire. That limit is a
+game-server setting and is not in the database, so the Console reports how long
+ago a vehicle was stored and never whether it has expired.
+
+### Deleting a stored vehicle
+
+`DELETE /api/vehicles/:vehicleId/stored` is the one override of the guard. It
+deletes a vehicle only when its state is `VehicleRecovery` -- `Travel` and
+`VehicleBackup` still refuse, and an ordinary vehicle is sent back to the
+normal route -- and only while no character on the owning account is online
+(any status other than `Offline` refuses, `LoggingOut` included). Any character
+on the account can restore the vehicle in-game, and a running game server keeps
+its own copy of an online player's recovery list (`store_recovered_vehicle`
+notifies `vehicle_recovery_notify_channel`) that a direct delete does not
+update. The owner check runs under the same `actors` row lock
+`restore_recovered_vehicle` needs, so a restore cannot slip in between the check
+and the delete. The other half of that race -- the owner logging in between
+the check and the commit -- is closed by locking the account's character rows
+`FOR SHARE` before reading their status: a login is an update of
+`online_status`, so it waits, and a login already in flight is seen. It is
+never queued: a stored vehicle is on no map partition. If the vehicle still had
+an ordinary delete queued from when it was on a map, that entry is dropped once
+the stored delete succeeds. The recovery record goes with the vehicle through
+its `ON DELETE CASCADE`.
+
+The "owner is online" refusal names the character. A caller without
+`players:read` is told only that the vehicle cannot be deleted right now, since
+who is connected is player information.
+
 This is not the same operation as the game's own cleanup: Funcom's procedure
 **recovers** a vehicle (via `store_recovered_vehicles_wiped_before_spawn`)
 before removing it from the live map. The admin Delete Vehicle action is a
@@ -87,6 +137,7 @@ hard delete — there is no recovery step.
 | Method | Path | Purpose |
 |---|---|---|
 | `DELETE` | `/api/vehicles/:vehicleId` | Delete the vehicle. Body: `{ confirmation: "DELETE VEHICLE" }`. |
+| `DELETE` | `/api/vehicles/:vehicleId/stored` | Delete a vehicle that is Stored for Recovery. Body: `{ confirmation: "DELETE STORED VEHICLE" }`. Refused while its owner is online. |
 | `DELETE` | `/api/vehicles/:vehicleId/queued-delete` | Cancel a pending queued delete. No confirmation phrase — cancelling is reversible. |
 | `GET` | `/api/vehicles/pending-deletes` | Pending queue, grouped by `(map, partitionId)`, the same shape `/api/bases/pending-deletes` returns. |
 
@@ -109,6 +160,23 @@ fallback (the same class of gap the system-custodian transfer route closed
 earlier; see `vehicle-permissions.md`). `DELETE /api/vehicles/:vehicleId/queued-delete`
 (cancelling) stays under `vehicles:mutate`, and needed the same explicit
 pattern treatment for the same reason.
+
+`DELETE /api/vehicles/:vehicleId/stored` requires `vehicles:stored-delete`
+**and** `vehicles:delete`, audited as `vehicles.stored-delete`. The second
+check means a custom policy written as Deny `vehicles:delete` plus Allow
+`vehicles:*` cannot reach the stored delete either. No API-key level covers
+`vehicles:stored-delete`; a key has to name it explicitly (see
+[api-keys.md](api-keys.md)). The route runs a preflight (the vehicle exists, is
+in recovery, and its owner is offline) before the safety backup, so a request
+that will be refused does not cost a backup. It is separate from `vehicles:delete` so a
+policy that lets someone clear junk vehicles does not also let them take a
+recoverable vehicle away from a player. The name is `stored-delete`, not
+`delete-stored`, so no wildcard written against `vehicles:delete...` can reach
+it. An infix wildcard such as `vehicles:*delete*` names every delete on purpose
+and does grant it; no action name could prevent that. `GET /api/vehicles` reports `capabilities.vehicleStoredDelete`, which
+additionally needs `dune.actors.state`, `dune.recovered_vehicles`
+(`vehicle_id`, `character_id`, `time_stored`, `reason`) and `dune.player_state`
+(`id`, `account_id`, `character_name`, `online_status`).
 
 ## Why deletes are queued for a live map
 

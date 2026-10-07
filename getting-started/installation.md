@@ -1,23 +1,21 @@
 # Installation
 
-Run the installer as a normal user with `sudo` access. It downloads the latest public release, prepares the required services, starts the Console, and prints the browser address.
+Run the installer as a normal Linux user with sudo access. It downloads the latest public release, prepares the Console, and prints the browser address. Install curl and tar with your distribution's package manager first if they are missing.
 
 ```bash
-sh -c 'set -eu; mkdir -p "$HOME/dune-awakening-selfhost-docker"; cd "$HOME/dune-awakening-selfhost-docker"; latest_url="$(curl -fsSLI -o /dev/null -w "%{url_effective}" https://github.com/Red-Blink/dune-awakening-selfhost-docker/releases/latest)"; version="${latest_url##*/}"; curl -fSL "https://github.com/Red-Blink/dune-awakening-selfhost-docker/archive/refs/tags/${version}.tar.gz" | tar -xz --strip-components=1; chmod +x install.sh; ./install.sh'
+curl -fsSL https://raw.githubusercontent.com/Red-Blink/dune-awakening-selfhost-docker/main/bootstrap.sh | sh
 ```
 
-{% hint style="info" %}
-The root [GitHub README](https://github.com/Red-Blink/dune-awakening-selfhost-docker#installation) always carries the canonical cross-distribution installer command. Use it if this shorter `curl` example does not match your host.
-{% endhint %}
+Do not run the installer as root or prefix it with sudo. The [GitHub README](https://github.com/Red-Blink/dune-awakening-selfhost-docker#installation) also provides download-tool alternatives.
 
 ## What Happens Next
 
 1. Open the Console URL printed by the installer, normally on port `8088`.
 2. Sign in with the generated administrator password.
-3. Complete the guided setup using your Funcom token and server choices.
-4. Start the Battlegroup and wait until the readiness checks pass.
-5. Configure firewall/NAT rules before inviting internet players.
+3. Complete the guided setup with your Funcom token and server choices.
+4. Start the Battlegroup and wait for readiness checks to pass.
+5. Configure [firewall and router rules](networking.md) before inviting internet players.
 
-The project directory is created at `~/dune-awakening-selfhost-docker` unless you deliberately install it elsewhere.
+The default project folder is `~/dune-awakening-selfhost-docker`. To choose a mounted drive, follow [Install on Another Drive](../how-to/install-on-another-drive.md). The fresh installer requires a new destination; do not use it over an existing installation. Use the Console's Updates page instead.
 
-Running the server on Windows? Follow [Install Dune Docker on Windows with VMware](install-dune-docker-on-windows.md) before installing Dune Docker.
+On Windows, choose either [VMware with Ubuntu](install-dune-docker-on-windows.md) or [Ubuntu WSL2 with Docker Desktop](../how-to/windows-wsl2.md). Do not run this Linux installer inside Docker Desktop's internal distribution.

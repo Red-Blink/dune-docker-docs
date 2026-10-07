@@ -2,6 +2,24 @@
 
 * [Welcome](README.md)
 
+## How Do I...?
+
+* [Common Tasks and Terminology](how-to/README.md)
+* [Change Game Ports](how-to/change-game-ports.md)
+* [Set a Sietch Password](how-to/sietch-password.md)
+* [Rename or Add Sietches](how-to/manage-sietches.md)
+* [Control Startup After Reboot](how-to/server-startup.md)
+* [Change Gameplay Settings](how-to/gameplay-settings.md)
+* [Automatic Restarts and Updates](how-to/automation.md)
+* [Allow or Block Character Transfers](how-to/character-transfers.md)
+* [Enable and Spawn Regis Tanks](how-to/regis-tanks.md)
+* [Hide Inactive Players](how-to/inactive-players.md)
+* [Update the Console or the Game](how-to/updates.md)
+* [Back Up Before Making Changes](how-to/backups.md)
+* [Install on Another Drive](how-to/install-on-another-drive.md)
+* [Ubuntu WSL2 and Docker Desktop](how-to/windows-wsl2.md)
+* [Connection Problems](how-to/connection-problems.md)
+
 ## Getting Started
 
 * [Requirements](getting-started/requirements.md)
@@ -19,6 +37,7 @@
 * [Server Control, Logs, and Health](console/server-operations.md)
 * [Maps, Sietches, and Deep Desert](console/maps-and-sietches.md)
 * [Players and Guilds](console/players-and-guilds.md)
+  * [Deleted Characters and Abandoned Assets](technical/console/deleted-characters.md)
 * [Bases and Land Claims](console/bases-and-land-claims.md)
 * [Vehicles](console/vehicles.md)
 * [Exchange and Market Bot](console/exchange-and-market.md)
@@ -59,6 +78,10 @@
 * [API Authentication and Safety](reference/api-authentication.md)
 * [Addon Development](developers/addon-development.md)
 * [System Architecture](developers/system-architecture.md)
+  * [Architecture Overview](technical/architecture/SYSTEM-OVERVIEW.md)
+  * [Service Responsibilities](technical/architecture/SERVICES.md)
+  * [Database Contracts](technical/architecture/DATABASE.md)
+  * [World and Partition Model](technical/architecture/WORLD-MODEL.md)
 * [Contributing](developers/contributing.md)
 
 ## Detailed Technical Guides
@@ -90,7 +113,12 @@
 ### Discord Integration Internals
 
 * [Discord Adapter Setup](technical/integrations/discord-integration/README.md)
+* [Discord Administrator Guide](technical/integrations/discord-integration/admin-guide.md)
+* [Discord Frequently Asked Questions](technical/integrations/discord-integration/faq.md)
+* [Discord Troubleshooting](technical/integrations/discord-integration/troubleshooting.md)
 * [Discord Companion Bot Setup](technical/integrations/discord-control-bot/setup-guide.md)
+* [Companion Bot Administration](technical/integrations/discord-control-bot/admin-guide.md)
+* [Discord Commands for Players and Admins](technical/integrations/discord-control-bot/user-guide.md)
 * [Discord API Adapter Contract](technical/integrations/discord-control-bot/api-adapter-contract.md)
 
 ### Historical Engineering Records

@@ -1,6 +1,6 @@
 # Generator fuel burn rates
 
-**Status:** Current | **Last Updated:** August 2026
+**Status:** Current | **Last Updated:** October 2026
 
 `FUEL_BURN_SECONDS` in `console/api/src/duneDb.js` stores the normal, per-unit
 uptime for each supported generator consumable. The values match the persisted
@@ -36,9 +36,19 @@ https://duneawakening.com/news/dune-awakening-1-4-10-0-patch-notes/
 | Omnidirectional Wind Turbine | Low-grade Lubricant (`WindTurbineLubricant1`) | 1 hour | 2 hours |
 | Directional Wind Turbine | Industrial-grade Lubricant (`WindTurbineLubricant2`) | 1 hour 30 minutes | 3 hours |
 | Spice-Powered Generator | Spice-infused Fuel Cell (`SpicedFuelCell`) | 1 hour 30 minutes | 3 hours |
+| Windtrap | Makeshift Filter (`WindTrapFilter1`) | 3 hours | 3 hours (not covered) |
+| Windtrap | Standard Filter (`WindTrapFilter2`) | 8 hours | 8 hours (not covered) |
+| Large Windtrap | Particulate Filter (`WindTrapFilter3`) | 12 hours | 12 hours (not covered) |
+| Large Windtrap | Advanced Particulate Filter (`WindTrapFilter4`) | 24 hours | 24 hours (not covered) |
 
 The lubricant grades are not interchangeable for reserve calculations. An
 incompatible item present in a turbine inventory must not count as usable fuel.
+
+Windtrap filters were never covered by the 2x uptime event, so the console
+applies no multiplier to them. Regular windtraps were only ever seen holding
+tiers 1-2 and Large Windtraps tiers 3-4, never a mix. Measured
+2026-09-26: Filter1/2 on dune2 (9 windtraps), Filter2/3/4 on the kovalt
+test dump (28 windtraps).
 
 This re-run confirms all four normal `FUEL_BURN_SECONDS` values against the live
 server, including spice: a `SpiceGenerator_Placeable` burning `SpicedFuelCell`
@@ -91,5 +101,4 @@ temporary event, add or update a bounded event policy instead.
 See [generator-refill-caps.md](generator-refill-caps.md) for how these same
 generator types map to fuel refill stack/cap limits and their operator
 override file.
-
 

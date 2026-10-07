@@ -29,3 +29,7 @@ Need to return to an earlier release? Follow [Restore a Previous Version](restor
 {% hint style="warning" %}
 Pre-release builds are for testing. Back up first, expect unfinished behavior, and report results—including a clear follow-up—through the QA channel.
 {% endhint %}
+
+## Step-by-Step Help
+
+See [Update the Console or the Game](../how-to/updates.md) for choosing the correct operation, checking the result, and collecting failure logs. See [Automatic Restarts and Updates](../how-to/automation.md) for scheduling and diagnosis.

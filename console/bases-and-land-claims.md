@@ -14,6 +14,10 @@ The global Bases page lists all detected claims. Expand a base to work with powe
 - Open a base from its marker on the Live Map.
 - Permanently delete a base with confirmation and a safety backup.
 
+## Picked-Up Bases
+
+Picked-up bases are managed through the base-backup tools, separately from live claims. Supported actions include exporting a live base or existing backup, importing a backup for a player, and changing a picked-up base's owner, name, or destination map. Follow owner-offline and confirmation requirements. These files are not full database backups. See [Base Backup Actors](../technical/console/base-backups.md).
+
 ## Land Claim Editor
 
 The Land Claim Editor displays the horizontal staking-unit grid and vertical expansion around the selected Sub-Fief. It can add or remove claim segments and set vertical expansion within the game's effective limit. Changes create a **Restore Safety Backup** and require a Hagga Basin restart before the game loads the edited claim geometry.

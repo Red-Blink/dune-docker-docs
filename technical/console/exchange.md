@@ -1,6 +1,6 @@
 # Market Board (Exchange)
 
-**Status:** Current | **Last Updated:** September 2026
+**Status:** Current | **Last Updated:** October 2026
 
 The Market Board is a **read-only** view of the in-game CHOAM exchange. It reads the
 game's own exchange tables (the game writes them; the console never mutates them) so
@@ -228,6 +228,15 @@ Exchange Bot addon drives through the scheduler bridge, now first-class):
   ones are pruned by the sidecar origin — including unlabeled ones written by
   earlier releases. Manual, automatic, and safety backups are never candidates.
   Set `DUNE_MARKET_BOT_BACKUP_KEEP` to change the count.
+- **Safety Backups toggle**: the **Safety Backups** block above the Market Bot
+  tabs turns these backups off for the whole bot — buyback, reseed, and NPC
+  listing removal, scheduled and manual. It is on by default; turning it off
+  asks for confirmation and the server requires the phrase
+  `DISABLE MARKET BOT BACKUPS`, while turning it back on needs none. The setting
+  lives in `runtime/generated/market-bot/settings.json`; a missing or corrupt
+  file keeps backups on. A run that skipped its backup says so in its run
+  summary, its audit entry (`backupSkipped: true`), and its Buyback Sweep Log
+  batch. Existing backups are left alone.
 - **Schedules** run unattended inside the console API process (no browser page needs
   to stay open) and survive restarts. They are console-owned and authorized by RBAC
   at save time. Seed and buyback share one running lock, so they can never write the

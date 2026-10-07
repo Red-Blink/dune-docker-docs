@@ -1,6 +1,6 @@
 # API Keys
 
-**Status:** Current | **Last Updated:** September 2026
+**Status:** Current | **Last Updated:** October 2026
 
 Named, revocable credentials for calling the Console HTTP API from outside the browser — a
 Grafana panel, a Discord bot, a community stats site, a monitoring script. Managed from the
@@ -21,7 +21,7 @@ curl -H "Authorization: Bearer <API_KEY>" \
   http://localhost:8088/api/players
 ```
 
-Replace `<API_KEY>` with the key shown once when it is created.
+Replace `<API_KEY>` with the key shown by the Console when you create it.
 
 Keys use the same `Authorization: Bearer` header as the Discord adapter. No cookie and no
 CSRF token are involved: CSRF protects against a hostile page riding an ambient credential,
@@ -96,9 +96,9 @@ namespace" rule, so Create stays disabled until something is selected.
 
 | Namespace | Read grants | Read+write additionally grants |
 |---|---|---|
-| `players` | `players:read` | `delete-item`, `edit-item`, `give-item`, `grant`, `kick-all`, `moderate`, `recover`, `repair`, `reset`, `teleport`, `unclassified` |
-| `bases` | `bases:read` | `add-item`, `bulk-delete-items`, `delete`, `delete-item`, `fill-item`, `give-item`, `mutate`, `write-config` |
-| `vehicles` | `vehicles:read` | `bulk-delete-items`, `delete`, `delete-item`, `mutate` |
+| `players` | `players:read` | `configure-list`, `delete-item`, `edit-item`, `give-item`, `grant`, `kick-all`, `moderate`, `recover`, `repair`, `reset`, `teleport`, `unclassified` |
+| `bases` | `bases:read` | `add-item`, `bulk-delete-items`, `delete`, `delete-item`, `fill-item`, `give-item`, `delete-backup`, `edit-backup`, `export-backup`, `import-backup`, `mutate`, `write-config` — **the four base-backup actions require explicit grants; see below** |
+| `vehicles` | `vehicles:read` | `bulk-delete-items`, `delete`, `delete-item`, `mutate`, `stored-delete` — **the stored-vehicle delete requires an explicit grant; see below** |
 | `guilds` | `guilds:read` | `disband`, `membership`, `rank`, `unclassified` |
 | `storage` | `storage:read` | `mutate` |
 | `blueprints` | `blueprints:read` | `delete`, `export`, `import`, `unclassified` |
@@ -109,7 +109,7 @@ namespace" rule, so Create stays disabled until something is selected.
 | `landsraad` | `landsraad:read` | `write` |
 | `server` | `server:read` | `console-reload`, `network-fix`, `restart`, `restart-service`, `start`, `stop`, `storage-cleanup`, `write-config` |
 | `logs` | `logs:read` | *nothing — no write action exists* |
-| `backups` | `backups:read` | `create`, `create-system`, `delete`, `delete-system`, `import`, `restore`, `write-config`; system download, import, and restore require explicit actions |
+| `backups` | `backups:read` | `create`, `create-system`, `delete`, `delete-system`, `import`, `restore`, `write-config` — **not** `download-system`, `import-system` or `restore-system`, which no level grants (see below) |
 | `updates` | `updates:check`, `updates:read` | *nothing — write actions are denied to keys* |
 | `carepackage` | `carepackage:read` | `clear-history`, `grant`, `scan`, `write-config` |
 | `addons` | `addons:read` | *nothing — write actions are denied to keys* |
@@ -137,20 +137,71 @@ Two actions are POST-shaped but read-only in effect, and are reachable by a **Re
 `carepackage:scan` is deliberately *not* one of these: `POST /api/care-package/run` actually
 runs a grant cycle. The verb-shaped name is not the test; what the route does is.
 
-### System-backup actions
+### The two system-backup scopes
 
-`backups:download-system`, `backups:import-system`, and
-`backups:restore-system` are granted only when they are named explicitly in a
-key's Custom action list. Even `{"backups": "write"}` does not receive them.
-This prevents an older database-backup integration from silently gaining
-access to `.env`, Console credentials, IAM policies, and every file in
-`runtime/secrets` after an update.
+### Actions no level ever grants
 
-Creating and deleting system backups remain independently grantable as
-`backups:create-system` and `backups:delete-system`. Listing their non-secret
-sidecar metadata uses `backups:read`. Downloading an archive, importing one
-from another host, or applying its configuration requires the corresponding
-explicit high-impact action.
+`backups:download-system`, `backups:import-system`, `backups:restore-system`,
+`bases:import-backup`, `bases:edit-backup`, `bases:export-backup`, `bases:delete-backup` and `vehicles:stored-delete` are reachable **only** by naming them in a
+key's explicit action list. A key stored as `{"backups": "write"}`, `{"bases": "write"}` or `{"vehicles": "write"}` does not get them.
+
+Levels otherwise auto-cover actions added later, so a key keeps working as routes are
+added. That is right for a namespace whose blast radius is stable, and wrong for this
+one: `backups` used to mean database dumps, and now also means an archive of `.env`,
+every file in `runtime/secrets` (the console's own admin password, the session secret,
+`api-keys.json`) and `runtime/generated/iam-policies.json`. Without the exclusion, every
+key minted back when `backups: write` meant `pg_dump` would have silently gained
+whole-host takeover and full credential exfiltration on upgrade, with no re-save and
+nothing for the operator to review.
+
+`create-system` and `delete-system` are not excluded: neither reads an archive back nor
+writes one into the host.
+
+`bases:import-backup`, `bases:edit-backup`, `bases:export-backup` and `bases:delete-backup` are excluded on the
+same grounds. Import creates a whole base, with every item stored in it, from an uploaded
+file. Edit can hand an existing picked-up base to another player or move it to another map.
+Export downloads a whole base, every stored item included, as a file that imports on any
+server. Delete permanently removes that backup and all of its stored contents. A `bases: write` key was minted for per-base
+knobs (refills, permissions), not for that.
+
+`vehicles:stored-delete` is excluded because it deletes a vehicle that is Stored for
+Recovery -- one a player can still get back. A `vehicles: write` key was minted before that
+was possible. The route also requires `vehicles:delete`, so a key needs both: `vehicles:delete`
+(from the write level or named) and `vehicles:stored-delete` named explicitly.
+
+The `admin` tier is denied the three `backups` actions above for the same reason — see
+`policy.js`. It keeps the four `bases` actions through `bases:*`.
+
+`backups:create-system` and `backups:download-system` are write-classified and
+deliberately separate from the rest of the namespace, because neither is really about
+database backups:
+
+- **`backups:create-system`** — `POST /api/backups/system/create`. Runs a database dump and
+  writes an encrypted archive that also contains `.env` and every file in `runtime/secrets`.
+- **`backups:download-system`** — `GET /api/backups/system/{name}/download`. Hands over that
+  archive. Its only protection is the passphrase chosen when it was created, so granting this
+  is equivalent to handing over the server to anyone who can guess or obtain that passphrase.
+  It is deliberately **not** `backups:read`: a `GET` is invisible to the mutating-route parity
+  test, so this route's own action assignment is the only thing keeping the archive off a
+  read-only grant.
+
+- **`backups:restore-system`** — `POST /api/backups/system/{name}/restore`. Replaces
+  `.env`, `runtime/generated`, `runtime/secrets` and the database on this host from an
+  archive. The most destructive action in the namespace: it can change the admin console
+  password and the database credentials out from under the running stack. Defaults to a
+  dry run; only `apply` actually writes.
+- **`backups:import-system`** — `POST /api/backups/system/import`. Uploads an archive
+  created on another host. Separate from `backups:import`, which takes a database dump:
+  this one accepts `.env`, every secret and the Funcom token, staged for a later restore
+  to apply. Anyone holding it can put credentials of their choosing on the host.
+
+- **`backups:delete-system`** — `DELETE /api/backups/system/{name}` and the bulk
+  delete routes. Separate from `backups:delete` on purpose: a system archive is the
+  only copy of the credentials inside it, so destroying one should be grantable
+  independently of pruning database backups.
+
+Listing system backups (`GET /api/backups/system`) is a genuine read and stays on
+`backups:read` — the listing exposes only the non-secret sidecar fields.
 
 ### What a key can never reach
 

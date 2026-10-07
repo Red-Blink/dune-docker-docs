@@ -22,6 +22,15 @@ Dune Docker is an unofficial community project. It is not affiliated with, endor
 
 ## Quick Links
 
+- [How do I change game ports?](how-to/change-game-ports.md)
+- [How do I put a password on a Sietch?](how-to/sietch-password.md)
+- [How do I stop the Battlegroup starting after a reboot?](how-to/server-startup.md)
+- [How do I change building limits or the reconstruction cooldown?](how-to/gameplay-settings.md)
+- [Why can't players find or join my server?](how-to/connection-problems.md)
+- [Browse all step-by-step guides](how-to/README.md)
+
+## Project Links
+
 - [Official Website and Server Directory](https://dunedocker.app/)
 - [Dune Docker Base Builder](https://blueprints.dunedocker.app/)
 - [Main GitHub Repository](https://github.com/Red-Blink/dune-awakening-selfhost-docker)

@@ -1,6 +1,6 @@
 # Permissioned Addon Item Grants
 
-**Status:** Current | **Last Updated:** August 2026
+**Status:** Current | **Last Updated:** October 2026
 
 UI addons can request the `admin:grant-items` permission to deliver an item through the trusted Dune admin implementation. The permission does not provide shell, Docker socket, repository, or environment-file access.
 
@@ -40,5 +40,4 @@ This operation performs delivery only. Scheduling, eligibility, and reward queue
 
 See [addon-provenance.md](../security/addon-provenance.md) for the addon
 discovery and code-signing threat model this permission model assumes.
-
 

@@ -13,6 +13,8 @@ Existing per-map settings are retained when changing unrelated maps. The Console
 
 ## Sietches
 
+For step-by-step instructions, see [Set a Sietch Password](../how-to/sietch-password.md), [Rename or Add Sietches](../how-to/manage-sietches.md), and [Change Game Ports](../how-to/change-game-ports.md). Name/password edits restart the affected running Sietch; changing the active count has additional registration effects described in the guide.
+
 Hagga Basin (`Survival_1`) can have multiple Sietch dimensions. Each partition may have a user-facing display name and password. Overland remains **Overland**; Sietch naming applies to Hagga Basin instances, not every map.
 
 ## Party-Isolated Activity Maps
@@ -22,6 +24,8 @@ Maps configured by the Director for one party per instance can scale to multiple
 Cleanup for these activity maps runs after shutdown. A cleanup problem is reported without blocking the next map start.
 
 ## CHOAM Terminal Positions
+
+For ordinary difficulty controls, start with [Change Gameplay Settings](../how-to/gameplay-settings.md). Custom Settings, legacy UserGame/UserEngine controls, Spice Fields, and CHOAM Terminals serve different purposes; they are not interchangeable editors.
 
 Interactive Modifiers can place a CHOAM terminal at a trade post's shipped position or capture a custom position from a standing player. The Console waits for a fresh game position update, validates that the result remains close to the selected trade post, and lets you save or apply it. An installed terminal must be reinstalled to move, and its map must restart before the new position appears in game.
 

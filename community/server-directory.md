@@ -25,3 +25,9 @@ On the directory, **My Characters** keeps the full server list visible but moves
 {% hint style="info" %}
 Directory ranking is recalculated from the website's ranking period; it is not a permanent position and does not update from a single momentary player-count spike.
 {% endhint %}
+
+## Public Gameplay and Transfer Information
+
+The listing can display reported gameplay settings, including official Custom Settings, and incoming/outgoing transfer rules. These are reported configuration, not independent proof of what the game enforces.
+
+See [Character Transfers](../how-to/character-transfers.md) for the In/Out labels. **Not Reported** means the information was not supplied, often by an older Console; it does not mean the feature is disabled. Free-transfer labels are hidden for blocked directions.

@@ -12,7 +12,7 @@ The transaction history records completed market activity from the time capture 
 
 ## Market Bot
 
-Market Bot can reseed NPC listings from the bundled or an imported CSV plan, remove its own listings, configure category multipliers and commodity stacks, schedule reseeds, run buyback sweeps, and inspect sweep results. Every market mutation creates a labeled backup. Player listings are not removed by reseeding or unseeding.
+Market Bot can reseed NPC listings from the bundled or an imported CSV plan, remove its own listings, configure category multipliers and commodity stacks, schedule reseeds, run buyback sweeps, and inspect sweep results. Market Bot writes create a labeled backup unless **Safety Backups** has been explicitly disabled with its confirmation. Keep this protection enabled unless you have a deliberate alternative backup policy. Player listings are not removed by reseeding or unseeding.
 
 Bot Items provides per-item enable, price, and listing-count overrides, plus carefully validated additions from the Console catalog.
 

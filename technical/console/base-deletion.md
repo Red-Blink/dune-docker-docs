@@ -1,6 +1,6 @@
 # Base deletion
 
-**Status:** Current | **Last Updated:** August 2026
+**Status:** Current | **Last Updated:** October 2026
 
 The Bases panel can permanently delete a base and everything built or stored
 on it. The action lives as a **Delete Base** row action (trash icon) in the
@@ -36,10 +36,15 @@ why the delete also calls the shipped `dune.permission_actor_destroy(bigint)`
 before deleting the actor rows themselves.
 
 No new stored procedure was added for this: the repo has no migrations
-directory and never issues `CREATE FUNCTION` anywhere, so a delete composes
-two functions the game already ships (`permission_actor_destroy` and
-`dune.delete_actors(bigint[])`) inside one transaction, the same way
-`mutateBasePermissions` composes the permission procedures.
+directory, and it defines no routine inside the game's own `dune` schema, so
+a delete composes two functions the game already ships
+(`permission_actor_destroy` and `dune.delete_actors(bigint[])`) inside one
+transaction, the same way `mutateBasePermissions` composes the permission
+procedures.
+
+(The project does create operational routines elsewhere, including exchange
+history capture and network-address normalization, but base deletion adds no
+database routine of its own. See [DATABASE.md](../architecture/DATABASE.md) §9.)
 
 ## Endpoints
 
@@ -75,7 +80,7 @@ but consent, since base inventory shipped read-only and no existing
 ## Why deletes are queued for a live map
 
 This schema has no live-notify path for structural changes — the same lack of live sync
-[Base inventory](base-inventory.md#deletion-does-not-require-a-stopped-map) documents for item rows: zero
+[Base inventory](base-inventory.md#deletion-give-and-fill-do-not-require-a-stopped-map) documents for item rows: zero
 triggers on `dune.buildings`/`dune.building_instances`/`dune.placeables`, and
 no `pg_notify` channel for a structural despawn. A running map server
 periodically flushes its own in-memory copy of a base back to Postgres, so a

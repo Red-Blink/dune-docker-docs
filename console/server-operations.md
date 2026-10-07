@@ -20,3 +20,9 @@ Common targets include Gateway, Director, Survival, Overland, PostgreSQL, Rabbit
 - **Ports/Ping** help separate local service health from external connectivity.
 
 See [Restart Queue](../technical/console/restart-queue.md) for the precise countdown and recovery behavior.
+
+## Startup and Restart History
+
+[Server Startup](../how-to/server-startup.md) controls whether the Battlegroup automatically starts after the host boots. It is separate from starting or stopping it now.
+
+Use **Restart History** to inspect recorded restart activity and affected targets. An empty or filtered history is not proof that the Linux host never restarted; it is a record of operations captured by the Console/runtime, not a complete operating-system audit.

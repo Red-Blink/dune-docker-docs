@@ -27,3 +27,7 @@ Use `dune ping`, `dune ports`, and the Console health checks when diagnosing con
 {% hint style="info" %}
 Closing UDP `32000–32015` does not remove a server from the directory. Personalized latency automatically uses the Dune Docker relay when a direct measurement is unavailable.
 {% endhint %}
+
+## Change Existing Ports
+
+Use [Change Game Ports](../how-to/change-game-ports.md) for the exact Console steps, non-overlapping range examples, router changes, and verification. To change only the browser address, use the Web Console Port setting instead.

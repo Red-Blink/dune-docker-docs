@@ -1,6 +1,6 @@
 # Blueprint Import/Export — Developer Documentation
 
-**Status:** Current | **Last Updated:** August 2026
+**Status:** Current | **Last Updated:** October 2026
 
 ## Overview
 
@@ -347,7 +347,7 @@ All blueprint mutations log to the audit system:
 
 | File | Tests | Scope |
 |------|-------|-------|
-| `test/blueprints.test.js` | 52 | Unit tests: import, export, list, delete, deduplication, name sanitization, slot limits, batch handling, edge cases |
+| `test/blueprints.test.js` | 61 | Unit tests: import, export, rotation conversion, list, delete, deduplication, name sanitization, slot limits, batch handling, edge cases |
 | `test/httpSafety.test.js` | 15 | Multipart form: fields+files, binary, size limits, quoted boundaries, path traversal |
 | `test/blueprints-http-routes.test.js` | 15 | Route validation, ID parsing, filename sanitization |
 
@@ -378,7 +378,8 @@ Covers A01-A10 static analysis checks for the blueprint API surface.
 - **Status**: OPEN
 - **Finding**: Game server crashes (P34) when previewing some imported blueprints in-game
 - **Fixed**: `PlayerBaseBackupId` added to stats JSON to match live solido format
-- **Fixed**: Imported transforms and pentashield scales now use the engine's zero-based PostgreSQL array bounds; existing Console imports are normalized after a successful database update
+- **Fixed**: Console imports retain the ordinary PostgreSQL array bounds verified before v1.4.26; the database-update repair targets only Console-owned imports and never rewrites native Funcom Blueprint rows
+- **Fixed**: Patch 1.5 placeables are stored as `X,Y,Z,Yaw,Pitch,Roll`; import/export now converts that order to and from the Solido JSON `rx,ry,rz` axes, and the database-update repair corrects older Console imports once without touching native Funcom rows
 - **Verification needed**: Test with different blueprints and map types
 - **Remaining root cause candidates**: hologram flag interaction, `building_blueprint_map` empty, invalid building types on target map
 

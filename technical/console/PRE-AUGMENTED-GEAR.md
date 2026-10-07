@@ -239,4 +239,3 @@ See [pre-augmented-gear-grant.md](../security/pre-augmented-gear-grant.md) for
 the security review of the grant path (historical record, not maintained; the
 control described is still in force).
 
-

@@ -10,6 +10,10 @@ Deep Desert coordinates include their A1–I9 sector where applicable. Vehicles 
 
 ## Actions
 
+When the Deep Desert terrain and layout are available, use **Tilt** or right-drag to tilt and rotate the terrain. **Top-Down** resets the view. **Elevation Lines** is available in the layer controls. This changes the Console map view, not the player's in-game camera.
+
+**Flat Map (Layout Unknown)** means the current layout could not be established; it is not a missing slider that can be enabled independently. Offline partitions can still show saved data, but teleporting requires an eligible running destination. Do not start a map just to interpret saved markers as live positions.
+
 - Click a player, base, vehicle, resource, or POI marker for details.
 - Open a base directly in the Bases page.
 - Drag an online player marker to teleport that player.

@@ -20,3 +20,7 @@ Enabling an automatic rule also enables its parent Care Package so the rule cann
 {% hint style="info" %}
 Grant requirements differ by item type. Live grants may require the player online; database-backed schematics, augments, or repair actions may require the player offline. The Console labels the required state.
 {% endhint %}
+
+## Scheduling and Transfer Rules
+
+Use [Automatic Restarts and Updates](../how-to/automation.md) to configure the daily restart in local server time. Use [Character Transfer Rules](../how-to/character-transfers.md) for incoming/outgoing acceptance and free-transfer options.

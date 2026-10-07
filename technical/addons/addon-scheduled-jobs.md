@@ -1,6 +1,6 @@
 # Market Bot Scheduled Jobs and EDA Retirement
 
-**Status:** Current | **Last Updated:** August 2026
+**Status:** Current | **Last Updated:** October 2026
 
 The console API runs Market Bot reseed and buyback schedules in the background.
 No browser page or addon needs to remain open. Market Bot is managed from
@@ -32,7 +32,9 @@ by count, not age: after every successful Market Bot backup only the 5 newest
 remain (override with `DUNE_MARKET_BOT_BACKUP_KEEP`). Candidates are matched by
 the sidecar's `backup_origin`, so unlabeled Market Bot backups from earlier
 releases are pruned too. Manual, automatic, and safety backups are never
-touched. Seed and buyback share a running lock, so they cannot mutate the exchange
+touched. When **Safety Backups** is turned off in the Market Bot settings, none
+of these backups are taken (the write still runs) and the run detail and audit
+entry record `backupSkipped`. Seed and buyback share a running lock, so they cannot mutate the exchange
 at the same time. Player listings are never removed by reseeding.
 
 The SQL is built server-side from validated schedule parameters. SQL text from a
@@ -92,5 +94,4 @@ the core state and retries cleanup at the next startup.
 
 See [exchange.md](../console/exchange.md#market-bot) for Market Bot behavior and
 [addon-provenance.md](../security/addon-provenance.md) for the addon trust model.
-
 

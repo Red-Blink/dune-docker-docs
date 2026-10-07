@@ -4,6 +4,8 @@ The Vehicles page lists player vehicles, ownership/sharing, location, fuel, and 
 
 ## Administration
 
+Use the lifecycle filters to distinguish spawned, backed-up, travelling, and **Stored for Recovery** vehicles. A stored vehicle is not sitting at an active map coordinate. Supported recovery records have a separate **Delete Stored Vehicle** action with confirmation and owner-offline checks; do not delete them as ordinary spawned vehicles.
+
 - Review individual modules and their recorded current/maximum durability.
 - Open a fitted storage module's cargo hold, inspect capacity and item details, and delete selected cargo with the required safeguards.
 - Repair modules below the chosen durability threshold.
@@ -18,3 +20,5 @@ Repair is a database-backed operation for an offline player/vehicle state. Follo
 {% endhint %}
 
 See [Vehicle Permissions](../technical/console/vehicle-permissions.md), [Vehicle Storage Contents](../technical/console/vehicle-storage.md), and [Vehicle Deletion](../technical/console/vehicle-deletion.md) for detailed behavior.
+
+For experimental tank spawning and its limitations, use [Enable and Spawn Regis Tanks](../how-to/regis-tanks.md).

@@ -26,3 +26,9 @@ An online character can be teleported live to coordinates, another online player
 The Guilds page shows guild membership and relevant server-side guild configuration. Guild limits come from effective game settings; duplicated raw settings are normalized in the Console presentation.
 
 See [Blueprints](../technical/console/blueprints.md) for import/export and repair details.
+
+## Finding Old and Deleted Characters
+
+[Hide Inactive Players](../how-to/inactive-players.md) explains the automatic visibility filter, including its Never default. It does not delete data.
+
+**Players → Deleted Characters** lists deleted characters and abandoned assets. It is separate from restoring a deleted character onto an account's current character. Review [Deleted Characters](../technical/console/deleted-characters.md) before changing ownership or deleting remaining assets.

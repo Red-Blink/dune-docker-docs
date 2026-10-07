@@ -33,3 +33,10 @@ The optional public probe uses a fixed UDP `32000–32015` range for direct pers
 - Public directory and Player Portal data are opt-in and minimized before leaving the host.
 
 For the code-level maintained reference, read [System Architecture Overview on GitHub](https://github.com/Red-Blink/dune-awakening-selfhost-docker/blob/main/docs/architecture/SYSTEM-OVERVIEW.md).
+
+## Detailed Architecture
+
+- [System Overview](../technical/architecture/SYSTEM-OVERVIEW.md)
+- [Services](../technical/architecture/SERVICES.md)
+- [Database Contracts](../technical/architecture/DATABASE.md)
+- [World and Partition Model](../technical/architecture/WORLD-MODEL.md)
