@@ -19,6 +19,7 @@ Start with what you want to do. These guides use the browser Console first; term
 - [Allow or block character transfers](character-transfers.md)
 - [Enable and spawn Regis Tanks](regis-tanks.md)
 - [Hide inactive players without deleting them](inactive-players.md)
+- [Install a blueprint for a character](install-a-blueprint.md)
 - [Update the Console or the game](updates.md)
 - [Find out why players cannot join](connection-problems.md)
 

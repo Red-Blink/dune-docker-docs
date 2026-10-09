@@ -14,6 +14,7 @@
 * [Allow or Block Character Transfers](how-to/character-transfers.md)
 * [Enable and Spawn Regis Tanks](how-to/regis-tanks.md)
 * [Hide Inactive Players](how-to/inactive-players.md)
+* [Install a Blueprint](how-to/install-a-blueprint.md)
 * [Update the Console or the Game](how-to/updates.md)
 * [Back Up Before Making Changes](how-to/backups.md)
 * [Install on Another Drive](how-to/install-on-another-drive.md)
