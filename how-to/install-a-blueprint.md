@@ -15,7 +15,7 @@ An import adds a blueprint item, not a completed base. You still place and build
 1. Open a design in Blueprint Studio and choose **Download**. For your own design in the editor, choose **Export**. Keep the downloaded JSON file.
 2. Open your server's Dune Docker Console and go to **Players**.
 3. Select the character who should receive the blueprint, then open their **Blueprints** tab.
-4. Choose the import view, select the downloaded JSON file, and confirm the import. You can import up to ten files at once if the character has enough free backpack slots.
+4. In **Player Blueprints**, select the downloaded JSON file in the import section and confirm the import. You can import up to ten files at once if the character has enough free backpack slots.
 5. Wait for the success message, then log the character out and back in. The blueprint appears in their backpack.
 6. Use the blueprint item in game to preview and place the design in a suitable location.
 
