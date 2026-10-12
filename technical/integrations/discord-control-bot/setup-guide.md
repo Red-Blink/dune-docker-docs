@@ -1,3 +1,7 @@
+---
+description: Set up the Dune Docker Discord companion bot, configure its credentials and Console connection, and verify the integration.
+---
+
 # Dune Discord Companion Bot - Setup Guide
 
 **Status:** Current | **Last Updated:** July 2026

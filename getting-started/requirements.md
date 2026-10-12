@@ -1,3 +1,7 @@
+---
+description: Check Linux, Docker, memory, storage, and networking requirements before installing your self-hosted Dune Awakening server.
+---
+
 # Requirements
 
 You do not need to be a Linux expert. The installer checks the essentials and prepares Docker on supported Linux systems.

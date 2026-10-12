@@ -1,3 +1,7 @@
+---
+description: Run your Dune Awakening server day to day with Dune Docker status checks, logs, safe restarts, updates, and backups.
+---
+
 # Day-to-Day Operations
 
 ## Daily

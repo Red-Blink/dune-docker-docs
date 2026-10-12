@@ -1,3 +1,7 @@
+---
+description: Understand Dune Docker base deletion safeguards, queued cleanup, and Console API behavior before permanently removing a base.
+---
+
 # Base deletion
 
 **Status:** Current | **Last Updated:** October 2026

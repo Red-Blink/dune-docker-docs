@@ -1,3 +1,7 @@
+---
+description: Inspect Dune Awakening bases and land claims, manage ownership and permissions, and review safe base maintenance actions in the Console.
+---
+
 # Bases and Land Claims
 
 The global Bases page lists all detected claims. Expand a base to work with power, water, inventory, permissions, blueprints, and land-claim data. The player-scoped Bases tab uses the same tools but shows only bases owned by or shared with that player.

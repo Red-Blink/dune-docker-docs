@@ -1,3 +1,7 @@
+---
+description: Understand Market Bot scheduled jobs, delivery and maintenance tasks, and the retirement of event-driven addon processing in Dune Docker.
+---
+
 # Market Bot Scheduled Jobs and EDA Retirement
 
 **Status:** Current | **Last Updated:** October 2026

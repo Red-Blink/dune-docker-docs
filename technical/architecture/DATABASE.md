@@ -1,3 +1,7 @@
+---
+description: How Dune Awakening stores world state in PostgreSQL, and how Dune Docker handles database contracts, partitions, migrations, and backups.
+---
+
 # Database Reference
 
 **Status:** Observed — verified against game build 2117304-0-shipping (September 2026). Re-verify after a game update.

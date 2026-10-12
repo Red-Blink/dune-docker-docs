@@ -1,3 +1,7 @@
+---
+description: Diagnose Dune Docker startup, connection, permission, and game-server problems using the Console, doctor checks, and service logs.
+---
+
 # Troubleshooting
 
 Start with evidence, not a broad restart.

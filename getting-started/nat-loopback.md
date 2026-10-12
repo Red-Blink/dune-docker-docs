@@ -1,3 +1,7 @@
+---
+description: Connect to your Dune Awakening server from the same local network when your router does not support NAT loopback.
+---
+
 # Local Network NAT Loopback Alternative
 
 Some routers do not support **NAT loopback**, also called **hairpin NAT**. Without it, computers on the same local network may be unable to connect to the Dune server through its public server listing, even though remote players connect normally.

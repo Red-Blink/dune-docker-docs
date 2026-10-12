@@ -1,3 +1,7 @@
+---
+description: Back up and restore a self-hosted Dune Awakening server with Dune Docker database backups and encrypted whole-system backups.
+---
+
 # Database and System Backups
 
 **Status:** Current | **Last Updated:** October 2026

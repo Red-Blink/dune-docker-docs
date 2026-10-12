@@ -1,3 +1,7 @@
+---
+description: Install a self-hosted Dune Awakening server with Dune Docker, complete the browser setup, and start your first Battlegroup.
+---
+
 # Installation
 
 Run the installer as a normal Linux user with sudo access. It downloads the latest public release, prepares the Console, and prints the browser address. Install curl and tar with your distribution's package manager first if they are missing.

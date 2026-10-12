@@ -1,3 +1,7 @@
+---
+description: Learn how Dune Docker imports and exports Dune Awakening blueprints, validates game-ready transforms, and installs building pieces safely.
+---
+
 # Blueprint Import/Export — Developer Documentation
 
 **Status:** Current | **Last Updated:** October 2026

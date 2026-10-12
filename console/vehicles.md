@@ -1,3 +1,7 @@
+---
+description: Manage Dune Awakening vehicles in the Dune Docker Console, including ownership, module repairs, storage, recovery records, and deletion.
+---
+
 # Vehicles
 
 The Vehicles page lists player vehicles, ownership/sharing, location, fuel, and component condition. A player's Vehicles tab narrows the same information to vehicles they own or share.
