@@ -16,8 +16,12 @@ Open **Updates** and configure automatic game updates. Review all of these choic
 - Whether available updates should actually be applied.
 - Whether players should be notified and the warning times.
 - Whether to wait for an empty server, and the maximum wait.
+- **Update the Console after a game update**: check for and install a newer official Dune Docker release after updating the game.
+- **Disable before, restore after the update** under Regis Tanks: explicitly allow the automatic update workflow to turn tanks off before downloading game files.
 
-Checking for updates alone does not install them. A busy server can delay application according to the wait policy. Regis Tanks must be disabled before game-server updates; see [Regis Tanks](regis-tanks.md).
+Checking for updates alone does not install them. A busy server can delay application according to the wait policy. Without the tank-management option, an update is blocked while tanks are enabled. With it, the workflow must confirm tanks are off before continuing. It restores them only after a newer official Dune Docker release has been installed and supports the updated game build; otherwise tanks remain off. Review the reported restore status. See [Regis Tanks](regis-tanks.md).
+
+Automatic Console updating is optional; checking for game updates does not by itself enable it.
 
 ## If a Schedule Does Not Run
 

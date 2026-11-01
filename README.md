@@ -31,6 +31,7 @@ Dune Docker is an unofficial community project. It is not affiliated with, endor
 
 ## Project Links
 
+- [Try the Console — Take the Controls](https://try.dunedocker.app/)
 - [Official Website and Server Directory](https://dunedocker.app/)
 - [Dune Docker Base Builder](https://blueprints.dunedocker.app/)
 - [Main GitHub Repository](https://github.com/Red-Blink/dune-awakening-selfhost-docker)
@@ -41,7 +42,9 @@ Dune Docker is an unofficial community project. It is not affiliated with, endor
 
 ## What You Can Manage
 
-The Console covers the full operating lifecycle: server health and logs, game and Console updates, automatic and manual backups, map modes and Sietches, one to three Deep Desert instances, player progression and recovery tools, bases and land claims, vehicles, guilds, Landsraad information, CHOAM market tools, live-map activity, broadcasts, scheduled messages, Care Packages, settings, optional public listings, and Community Addons. The separate [Base Builder](community/base-builder.md) helps you plan and share base layouts before building them in game.
+The Console covers the full operating lifecycle: server health and logs, game and Console updates, automatic and manual backups, map modes and Sietches, one to three Deep Desert instances, player progression and recovery tools, bases and land claims, vehicles and experimental Regis Tanks, guilds, Landsraad information, CHOAM market tools, live-map activity, broadcasts, scheduled messages, Care Packages, settings, optional public listings, and Community Addons. Choose from 54 Console languages and suggest translation corrections directly from the header. The separate [Base Builder](community/base-builder.md) helps you plan and share base layouts before building them in game.
+
+Take the controls and explore your command center! [Try the Console](https://try.dunedocker.app/) with sample data before installing. See [Explore the Console](community/console-preview.md) for what the preview includes.
 
 {% hint style="info" %}
 New here? Start with [Requirements](getting-started/requirements.md), then follow [Installation](getting-started/installation.md) and [First Run](getting-started/first-run.md).

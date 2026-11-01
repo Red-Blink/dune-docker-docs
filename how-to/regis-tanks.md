@@ -23,6 +23,8 @@ Disabling restores the original game image and restarts affected Hagga Sietches.
 
 Game-server updates are blocked while tanks are enabled. Disable the feature first, complete the game update, and re-enable only when the Console supports the new build. A previously working patch is not automatically safe for a new Funcom build.
 
+The automatic update policy has an explicit **Disable before, restore after the update** option. When enabled, it handles the disable step before a game update and restores tanks only after installing a newer official Console release that supports the new build. Without a qualifying release, tanks stay off. This option does not make an unsupported patch compatible; see [Automatic Restarts and Updates](automation.md).
+
 ## Known Limitations
 
 The Dart weapon can show pink firing effects and lack firing audio on an unmodified client. Tank-related HUD/module warnings and reports of client crashes or unreliable joins remain relevant limitations; successful spawning does not establish that every client effect is working.

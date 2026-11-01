@@ -2,7 +2,9 @@
 
 The first login opens guided setup. Complete each step in order; the Console validates required files and services before presenting normal administration pages.
 
-If you are replacing an existing Dune Docker host, choose **Restore a Dune Docker system backup** instead of configuring a new server. Upload the encrypted archive downloaded from the old host, install the game files when prompted, preview the restore, and then apply it. The wizard starts the restored Battlegroup and reloads the Console when it finishes. The archive's passphrase is required and cannot be recovered. See [Backups and Restore](../console/backups-and-restore.md).
+Choose **Deploy a New Server** for a new world. If you are replacing an existing Dune Docker host, choose **Restore a Dune Docker System Backup** instead. Upload the encrypted archive downloaded from the old host, install the game files when prompted, preview the restore, and then apply it. The wizard starts the restored Battlegroup and reloads the Console when it finishes. The archive's passphrase is required and cannot be recovered. See [Backups and Restore](../console/backups-and-restore.md).
+
+The setup banner stays visible throughout the wizard. On **Deployment Complete!**, a green progress bar indicates success. Review the deployment log, then select **Next** yourself to reach Finish. The Finish screen can redirect to the full Console and also provides **Ready to Explore? Open the Console Now** to open it immediately.
 
 ## Recommended Order
 

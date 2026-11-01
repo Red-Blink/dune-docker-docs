@@ -35,6 +35,7 @@
 ## Dune Docker Console
 
 * [Console Overview](console/overview.md)
+* [Languages and Translation Corrections](console/languages.md)
 * [Server Control, Logs, and Health](console/server-operations.md)
 * [Maps, Sietches, and Deep Desert](console/maps-and-sietches.md)
 * [Players and Guilds](console/players-and-guilds.md)
@@ -55,6 +56,7 @@
 
 ## Community Services
 
+* [Explore the Console](community/console-preview.md)
 * [Dune Docker Base Builder](community/base-builder.md)
 * [Public Server Directory](community/server-directory.md)
 * [Player Portal and Privacy](community/player-portal.md)
@@ -108,7 +110,6 @@
 * [Addon Scheduled Jobs](technical/addons/addon-scheduled-jobs.md)
 * [Addon Hardware Status](technical/addons/hardware-status.md)
 * [Console IAM Architecture](technical/console-iam.md)
-* [Console Authentication Design](technical/rfc-console-auth.md)
 * [Scoped Console API Keys](technical/console/api-keys.md)
 
 ### Discord Integration Internals
@@ -124,6 +125,7 @@
 
 ### Historical Engineering Records
 
+* [Console Authentication Design (Historical)](technical/rfc-console-auth.md)
 * [Blueprint Import and Export Test Report](technical/archive/blueprints-report.md)
 * [Addon Provenance Security Record](technical/security/addon-provenance.md)
 * [Pre-Augmented Gear Grant Record](technical/security/pre-augmented-gear-grant.md)

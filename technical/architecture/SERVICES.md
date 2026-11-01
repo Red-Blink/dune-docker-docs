@@ -250,3 +250,22 @@ own `start-*.sh`.
 | Login/session problems specific to a battlegroup | Director |
 | A Deep Desert reset event fires in-game but the host never restarts | Coriolis coordinator ([§4](#4-coriolis-coordinator-dune-coriolis-coordinator)) |
 | A published game-broker management port is unreachable | host firewall / port mapping — see [MULTI-SERVER-SINGLE-PUBLIC-IP.md](https://github.com/Red-Blink/dune-awakening-selfhost-docker/blob/main/docs/runtime/MULTI-SERVER-SINGLE-PUBLIC-IP.md) |
+| A player queues after logging out inside an idle Deep Desert instance | Check Director's exact refusal and Autoscaler login-resume activity below |
+
+### Deep Desert Login Resume
+
+When Director refuses a returning player into a Deep Desert partition whose
+server has despawned, Autoscaler can start that exact missing partition. It
+checks the recent refusal and current partition/container state; this is not a
+reason to clear unrelated player travel records.
+
+Look for `SPAWN deepdesert-login-resume partition=...`, followed by completion
+or failure in the Autoscaler log. `reason=map-disabled` means activation is
+disabled. `reason=container-present-unbound` requires investigation of an
+existing container rather than launching a duplicate. A successful script exit
+alone is not proof of an in-game login: correlate the next Director request
+and verify the player actually entered the destination.
+
+Starting a map takes time and consumes its configured memory allocation. If
+the client times out while it starts, wait for readiness before retrying. Do
+not repeatedly restart the entire Battlegroup to diagnose one partition.

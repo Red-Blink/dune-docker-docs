@@ -1,6 +1,6 @@
 # Addon Runtime API
 
-**Status:** Current | **Last Updated:** September 2026
+**Status:** Current | **Last Updated:** November 2026
 
 The runtime API gives UI addons typed player data, addon-owned storage, durable
 reward delivery, and private player messages without granting direct access to
@@ -158,3 +158,49 @@ submitted a reward or message, the core owns its queue and continues processing
 it after the iframe closes or the Console restarts. Eligibility scans and
 season-rule evaluation remain the addon's responsibility; third-party
 JavaScript is not executed as an unrestricted server process.
+
+## Browser Sandbox
+
+The Console opens the entry document in an iframe with `sandbox="allow-scripts"`.
+The content response also enforces that sandbox and a CSP with
+`connect-src 'none'`. The document is authenticated, but an opaque-origin
+subresource request must not be assumed to carry the Console's session cookie.
+Package the entry's required CSS and JavaScript inline and embed runtime data
+such as setup SQL instead of fetching it from a sibling file.
+
+Use the authenticated parent bridge for approved operations. `localStorage`
+and `sessionStorage` are unavailable in this sandbox, and reading those Window
+properties can throw before a storage helper is called. Use addon-owned storage
+through `addon.storage.*` with `files:addon-data`, or the addon's approved
+database structures where applicable. Preserve pending/uncertain delivery state
+across reloads; in-memory state alone is not durable deduplication.
+
+Native `alert`, `confirm`, and `prompt` dialogs are blocked because the sandbox
+does not allow modals. Render accessible confirmation UI inside the addon,
+including explicit accept/cancel paths. Do not require `allow-same-origin` or
+`allow-modals` changes in the Console to make an addon work. Test the packaged
+entry under the actual sandbox, CSP, and authentication rules.
+
+## Addon Removal
+
+Uninstall disables the addon first, then removes its Console jobs, stored data,
+delivery state, and installed files. The confirmation explains what is removed.
+Manually installed external services are separate unless the Console explicitly
+supports their cleanup.
+
+For the legacy `dune-airdrop-addon`, Uninstall also removes verified companion
+containers and reward automation before deleting addon files. The Console
+matches companions to this server using repository mounts or both labels
+`io.dunedocker.addon.id=dune-airdrop-addon` and
+`io.dunedocker.project.root=<absolute host repository path>`; a name alone is
+insufficient. It stops the companions, removes the verified playtime triggers
+and isolated `dune_airdrop` schema transactionally, and removes the stopped
+containers. Shared legacy tables under `dune` are preserved.
+
+Docker and the database must be available. If cleanup fails, the addon remains
+installed and disabled, with an error to resolve before retrying. No game
+service needs to restart for this cleanup.
+
+If an older Console removed Airdrop's files but left its daemon running,
+reinstall the addon, leave it disabled, and select Uninstall using an updated
+Console. Do not initialize its schema or enable it first.

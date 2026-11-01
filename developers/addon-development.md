@@ -11,6 +11,14 @@ Start from the [Official Addon Template](https://github.com/Red-Blink/dune-docke
 5. Package immutable release assets and update the community index through review.
 6. Document setup, permissions, schedules, recovery, and removal.
 
+## Test Inside the Console Sandbox
+
+An ordinary static preview does not reproduce an installed addon. The Console's iframe and content CSP allow scripts but keep an opaque origin, block direct network connections, and disallow native modal dialogs. Required JavaScript, styles, and setup data should be self-contained. Use bridge-backed persistence instead of browser storage, and render confirmations inside the addon rather than calling `window.confirm()`.
+
+Test the immutable package with the same sandbox/CSP and authenticated content rules. Mock database writes and reward delivery first. Cover initial setup, saved-state reload, canceled confirmations, failures, and pending/uncertain delivery recovery. Do not run an unreviewed companion daemon against a production server as the first test.
+
+See [Browser Sandbox](../technical/addons/addon-runtime-api.md#browser-sandbox) for the runtime contract.
+
 ## Supported Runtime Services
 
 With the matching approved permissions, an addon can use typed player summaries and supported progression data, private addon-owned JSON storage, durable idempotent delivery for supported rewards, and queued private player messages. Core-owned delivery queues continue after the addon page closes and survive Console restarts.

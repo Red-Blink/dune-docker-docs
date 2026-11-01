@@ -23,5 +23,7 @@ The maintained reference documents every route, method, accepted parameters, res
 | Maps | Modes, partitions, display names, Sietches, Deep Desert layout, combat state |
 | Market | Exchange board, transaction history, Market Bot schedules/plans/buyback |
 | Community | Addons, public directory, Player Portal reporting, QA authorization |
+| Languages | Bundled dictionaries and authenticated translation suggestions |
+| Realtime Data | Agent health, filtered snapshots, and server-sent events |
 
 Read [API Authentication and Safety](api-authentication.md) before writing a client. The source dispatcher and tests remain the final authority for behavior on a specific commit.

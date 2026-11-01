@@ -1,6 +1,6 @@
 # Dune: Awakening Console API Reference
 
-**Status:** Current | **Last Updated:** October 2026
+**Status:** Current | **Last Updated:** November 2026
 
 Complete reference for all HTTP API endpoints in the Dune Docker Console. All endpoints require authentication unless otherwise noted — either a browser session (session cookie + CSRF token) or a scoped API key sent as `Authorization: Bearer <key>`. See [api-keys.md](api-keys.md) for how key scopes are granted and what they can never reach. For the database these endpoints read and write — the encryption view layer, the notify channels that decide whether a write reaches a running map server, and the capability probes that make an endpoint report a feature as unsupported rather than fail — see [DATABASE.md](../architecture/DATABASE.md).
 
@@ -27,6 +27,8 @@ Complete reference for all HTTP API endpoints in the Dune Docker Console. All en
 - [Addons](#addons)
 - [Logs & Monitoring](#logs--monitoring)
 - [Settings & Public Directory](#settings--public-directory)
+- [Languages and Translation Suggestions](#languages-and-translation-suggestions)
+- [Realtime Data](#realtime-data)
 - [API Keys](#api-keys)
 - [Discord Adapter (Experimental)](#discord-adapter-experimental)
 - [Implementation Details](#implementation-details)
@@ -56,9 +58,9 @@ Complete reference for all HTTP API endpoints in the Dune Docker Console. All en
 
 | Method | Route | Description | Parameters |
 |--------|-------|-------------|------------|
-| GET | `/api/server/status` | Structured server status and command diagnostics | `raw?` (`0` omits legacy command output) |
+| GET | `/api/server/status` | Structured server status and command diagnostics | `raw?` (`0` omits legacy command output), `fresh?` (`1` waits for a current reading) |
 | GET | `/api/server/performance` | Performance snapshot (CPU, memory, disk) | None |
-| GET | `/api/server/readiness` | Service readiness check | None |
+| GET | `/api/server/readiness` | Service readiness check | `fresh?` (`1` waits for a current reading) |
 | GET | `/api/server/restart-history` | Recorded restart history and summary; entries are evidence of recorded operations, not a complete host audit | None |
 | GET | `/api/server/ports` | List service ports | None |
 | GET | `/api/server/services` | List services and status | None |
@@ -123,7 +125,7 @@ When the Restart Queue is enabled, the restart routes above (`/api/server/restar
 }
 ```
 
-Unavailable numeric and boolean values are `null`, and unavailable collections are empty arrays. `ok` reports whether the underlying status command completed successfully; health is reported separately in `data.summary.overall`. The legacy `operation`, `stdout`, `stderr`, and `exitCode` fields remain available for command diagnostics and backward compatibility. Add `?raw=0` to omit those legacy fields and return only the compact structured response. Status snapshots are cached briefly and refreshed in the background so frequent integration polling does not repeatedly block on the same host checks.
+Unavailable numeric and boolean values are `null`, and unavailable collections are empty arrays. `ok` reports whether the underlying status command completed successfully; health is reported separately in `data.summary.overall`. The legacy `operation`, `stdout`, `stderr`, and `exitCode` fields remain available for command diagnostics and backward compatibility. Add `?raw=0` to omit those legacy fields and return only the compact structured response. Status snapshots are cached briefly and refreshed in the background so frequent integration polling does not repeatedly block on the same host checks. Add `?fresh=1` to wait for a current reading. `sampledAt` identifies when the command actually ran, and `fromCache` distinguishes cached results; failed commands omit both. Starting, stopping, or restarting the Battlegroup invalidates cached readings. Readiness supports the same `fresh` option and metadata.
 
 ---
 
@@ -139,7 +141,7 @@ Unavailable numeric and boolean values are `null`, and unavailable collections a
 | POST | `/api/updates/check-stack` | Check for stack updates | None |
 | POST | `/api/updates/apply-stack` | Apply stack updates | None |
 | GET | `/api/updates/auto-game` | Get auto-update status | None |
-| POST | `/api/updates/auto-game` | Save auto-update config | `enabled`, `intervalMinutes`, `applyEnabled`, `notifyEnabled`, `notifyMinutes`, `waitUntilEmpty`, `maxWaitMinutes`, `confirmation` |
+| POST | `/api/updates/auto-game` | Save auto-update config | `enabled`, `intervalMinutes`, `applyEnabled`, `notifyEnabled`, `notifyMinutes`, `waitUntilEmpty`, `maxWaitMinutes`, `updateConsole`, `manageTanks`, `confirmation` |
 | POST | `/api/updates/repair-runtime` | Repair runtime installation | None |
 
 Successful game checks are cached for 30 minutes in
@@ -224,7 +226,8 @@ Player rows include `total_playtime_seconds`. The console samples `player_state.
 |--------|-------|-------------|------------|
 | GET | `/api/players/{playerId}` | Get player profile summary | `playerId` |
 | GET | `/api/players/{playerId}/inventory` | Get player inventory items — backpack, character gear, loadout, and unique-gear schematics (emote containers excluded), each row tagged with `inventory_type` | `playerId` |
-| GET | `/api/players/{playerId}/vehicles` | Get vehicles owned by or shared with the player, including the player's access relationship | `playerId` |
+| GET | `/api/players/{playerId}/vehicles` | Get vehicles owned by or shared with the player, including access relationship; at most 200 rows | `playerId`, `access?` (`owner`, `coowner`, otherwise all roster ranks) |
+| GET | `/api/players/{playerId}/bases` | Get bases where the player holds a roster rank, including access relationship; at most 5,000 rows | `playerId`, `access?` (`owner`, `coowner`, otherwise all roster ranks), `q?`, `sortColumn?`, `sortDirection?` |
 | GET | `/api/players/{playerId}/currency` | Get player currency totals | `playerId` |
 | GET | `/api/players/{playerId}/solaris-coin` | Get Solaris Coin total | `playerId` |
 | GET | `/api/players/{playerId}/factions` | Get faction reputation | `playerId` |
@@ -251,6 +254,20 @@ Player rows include `total_playtime_seconds`. The console samples `player_state.
 | POST | `/api/players/{playerId}/set-skill-points` | Set skill points | `points` (number) |
 | POST | `/api/players/{playerId}/set-skill-module` | Set skill module | `module` (string), `level` (number) |
 | POST | `/api/players/{playerId}/refill-water` | Refill hydration | `amount?` (number) |
+| GET | `/api/players/{playerId}/customizations` | Cosmetic catalog and current status | `playerId` |
+| POST | `/api/players/{playerId}/customizations/grant` | Grant a cosmetic or set | `itemId` or `groupId`, `confirmation: "GRANT CUSTOMIZATIONS"` |
+
+The Halloween 2026 suit, two plague doctor masks, and swatch unlock directly
+in the character's customization list and require the player fully offline.
+Repeated requests skip existing unlocks. Other sets retain token-delivery and
+entitlement requirements. Results distinguish `unlocked`, `delivered`, and
+`requested`; per-entry `ownershipVerified` applies to direct event unlocks.
+These direct customization IDs are excluded from the general inventory catalog.
+
+The player-specific base and vehicle `access` filters narrow list results,
+not authorization. Guild/public piece access does not create a per-player
+roster entry. The browser initially selects owned assets; the API's omitted
+filter returns all roster relationships.
 
 ### Player Actions (Kick/Teleport/Vehicles)
 
@@ -474,7 +491,7 @@ tab can offer a retry only where retrying could actually help.
 | Method | Route | Description | Parameters |
 |--------|-------|-------------|------------|
 | GET | `/api/vehicles` | List all player vehicles (paginated), each with owner, shared-with roster, lowest-component condition %, fuel %, map/partition, coordinates, and per-component durability. `status` narrows the list: `owned` (has an owner or is in `Travel`, not put away), `recovery` (Stored for Recovery), `backup` (Vehicle Backup), `unowned` (no owner, not put away or in `Travel`), or `all` (default) | `q?`, `page?`, `pageSize?`, `sortColumn?`, `sortDirection?`, `status?` |
-| GET | `/api/players/{playerId}/vehicles` | List the selected player's owned and shared vehicles using the same vehicle details | `playerId` |
+| GET | `/api/players/{playerId}/vehicles` | List the selected player's owned and shared vehicles using the same details; at most 200 rows | `playerId`, `access?` (`owner`, `coowner`, otherwise all roster ranks) |
 | GET | `/api/vehicles/{vehicleId}/permissions` | Get a vehicle's permission roster (Owner, Co-Owners, Associates) plus the detected system custodian | `vehicleId` |
 | PUT | `/api/vehicles/{vehicleId}/permissions` | Replace a vehicle's permission roster | `vehicleId`, `entries[]` (`playerId`, `rank`) |
 | POST | `/api/vehicles/{vehicleId}/system-custodian` | Transfer ownership to the Server or detected GM system custodian while preserving the roster; provisions Server when no custodian exists | `vehicleId` |
@@ -908,6 +925,14 @@ pre-write backup before the query is rejected.
 | POST | `/api/admin/history/clear` | Clear admin history | `scope?` ("all" or "admin-tools") |
 | GET | `/api/admin/character-transfer-settings` | Get character transfer settings | None |
 | POST | `/api/admin/character-transfer-settings` | Save/restore character transfer settings | `settings?` or `restoreDefaults: true` |
+
+Transfer settings are persisted and applied through Director's live settings
+interface without restarting services. POST returns `200` with `applied: true`
+after verifying the effective settings; it does not create a restart task.
+If persistence succeeds but live application cannot be confirmed, POST returns
+`503` explaining that settings remain saved. GET includes `applied`: `true`
+when confirmed, `false` when values differ, or `null` when Director cannot be
+checked.
 | GET | `/api/admin/message-of-the-day` | Get MOTD settings | None |
 | POST | `/api/admin/message-of-the-day` | Save/restore MOTD | `settings?` or `restoreDefaults: true` |
 | GET | `/api/admin/player-announcements` | Get announcement settings | None |
@@ -1024,7 +1049,42 @@ Settings routes require the appropriate browser-session permissions; scoped API 
 
 ---
 
+## Languages and Translation Suggestions
+
+| Method | Route | Description | Parameters |
+|--------|-------|-------------|------------|
+| GET | `/api/i18n/languages` | Public read-only language catalog and coverage | None |
+| GET | `/api/i18n/translations` | Public read-only dictionary of reviewed phrases | `lang?` (defaults to `EN`) |
+| POST | `/api/i18n/suggestions` | Submit a correction for project review; returns `201` with a tracking receipt | `lang`, `source`, `translation`, `credit?` |
+
+The public dictionary endpoints never trigger external translation-provider
+work or mutate local data. Suggestions require the supported browser session,
+CSRF, and permission checks; scoped API keys cannot submit them. Invalid
+corrections return `400`; an upstream submission failure returns `502`.
+Acceptance is separate from distribution in a later project update. See
+[Languages and Translation Corrections](../../console/languages.md).
+
+Advanced provider/settings and enrolled peer-sync routes remain separate from
+the normal language picker; they are not needed to select a bundled language
+or propose a correction.
+
+## Realtime Data
+
+| Method | Route | Description | Parameters |
+|--------|-------|-------------|------------|
+| GET | `/api/realtime/healthz` | Health of the configured position agent | None |
+| GET | `/api/realtime/objects` | Filtered position snapshot | None |
+| GET | `/api/realtime/stream` | Server-sent position events | None |
+
+These routes require `realtime:read`. Player positions additionally require
+`players:read`; a Realtime Data grant alone does not disclose them. The open
+stream rechecks authorization, so revoking a key or removing a scope affects
+an existing connection. If the configured agent is unavailable, the Console
+returns an availability error rather than treating an empty result as live
+data. Enabling the API scope does not install the companion agent.
+
 ## IAM Policies
+
 
 Per-tier Allow/Deny documents for the action catalog. Architecture and evaluation order: [../console-iam.md](../console-iam.md).
 

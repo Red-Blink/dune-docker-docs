@@ -11,6 +11,12 @@ The Players page combines identity, location, progression, inventories, vehicles
 - Owned and shared bases, using the same expandable details as the global Bases page.
 - Administrative history and actions allowed by the current role.
 
+Inventory item IDs remain on one line. The information button beside an item name shows its template ID and supports hover, keyboard focus, and touch. Building Sets and Customizations use compact rows with separate Name, Item ID, requirement, and status columns; hover over a shortened Item ID to read the full value. Green **Available** means the entry is available for the action shown, not that every cosmetic is already owned.
+
+The player's Bases and Vehicles tabs initially show owned assets. Use **Permission** to include co-owned or other shared assets; this filter changes the list, not the administrator's authorization.
+
+The Halloween 2026 suit, two plague doctor masks, and swatch use the supported direct customization unlock flow and require the player fully offline. Other cosmetic entries can have inventory-token or entitlement requirements. Follow the per-entry result instead of treating a request as proof of ownership.
+
 ## Repairs and Recovery
 
 Targeted repair actions address known inconsistent game records without blindly resetting unrelated progression. These include faction/progression repairs, gear checks, Landsraad **Repair Quests**, and deleted-character recovery when recoverable database data still exists.

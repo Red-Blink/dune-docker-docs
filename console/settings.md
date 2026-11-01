@@ -20,6 +20,13 @@ Use [Private Console Access with Tailscale](../getting-started/private-console-a
 
 If you cannot sign in, follow [Recover the Admin Web Password](recover-admin-password.md).
 
+## Language Preference
+
+Use the header's **Console Language** icon beside **Join Discord**. This is a
+browser preference, not a Battlegroup setting. Included translations and
+correction submissions need no provider key. See
+[Languages and Translation Corrections](languages.md).
+
 ## Patch 1.5 Configuration Files
 
 The current dedicated server stores its official difficulty controls in each map server's:

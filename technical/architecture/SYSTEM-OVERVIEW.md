@@ -114,6 +114,14 @@ database queries go through the transport seam described in
 [DATABASE.md §2.1](DATABASE.md#21-how-runtime-scripts-connect) — relevant
 because this is the one process that queries Postgres continuously.
 
+Director log scans share a reconnecting, timestamped log follower and indexed
+cache. Replacing Director clears evidence from its previous container. Travel
+checks retain their two-second cadence; unavailable evidence defers recovery.
+Chat repair snapshots bindings and repairs only missing entries in batches of
+at most 200. `DUNE_AUTOSCALER_CHAT_EXCHANGE_REPAIR_SECONDS` defaults to 300 and
+`DUNE_AUTOSCALER_CHAT_EXCHANGE_REPAIR_TIMEOUT_SECONDS` to 60; these optional
+environment settings are loaded when Autoscaler is recreated.
+
 ---
 
 ## 2. The console (`console/api` + `console/web`)

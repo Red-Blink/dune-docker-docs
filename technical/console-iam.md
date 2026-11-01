@@ -95,6 +95,7 @@ Updates that remove the owner's `settings:write` access are rejected so the loca
 | Action | Covers |
 |---|---|
 | `players:moderate` | kick, ban, unban |
+| `players:configure-list` | change the inactive-player visibility threshold |
 | `players:teleport` | teleport |
 | `players:give-item` | give-item(s), give-item-id, augment-item, spawn-vehicle |
 | `players:grant` | currency, XP, intel, faction reputation, faction, skill points/module, building & customization & recipe & research unlocks, specialization XP/grant-max/keystones, journey & tutorial completion |
@@ -127,6 +128,16 @@ Add and remove stay one action deliberately: two directions of the same roster k
 | `bases:give-item` | give-item, give-items |
 | `bases:fill-item` | fill an existing stack to its cap |
 | `bases:write-config` | the auto-refill thresholds and scan intervals |
+| `bases:export-backup` | export an existing backup or live base as a portable base backup |
+| `bases:import-backup` | import a portable base backup for a player |
+| `bases:edit-backup` | reassign, rename, or move a picked-up base |
+| `bases:delete-backup` | permanently delete a picked-up base and its stored contents |
+
+The four base-backup actions are explicit grants. Read access to bases does not
+authorize exporting a portable copy of all stored items, importing a whole
+base, reassigning it, or deleting it. Listing backups and downloading blueprint
+geometry remain separate from these portable-backup operations. See
+[Scoped Console API Keys](console/api-keys.md) for additional key restrictions.
 
 `bases:write-config` is the consent case rather than the blast-radius one: every other action here acts on one base and is reversible on that base, whereas the thresholds and intervals govern the automation for *every* enrolled base at once. An operator granted `bases:mutate` agreed to enroll bases, not to retune the policy behind all of them. It follows the per-feature settings convention (`exchange:write-config`, `maps:write-config`). Shipped defaults are unchanged: `owner` (`*`) and `admin` (`bases:*`) reach it, and `moderator`/`player`/`observer` keep `bases:read` only, so they can read the settings but not save them.
 

@@ -31,6 +31,14 @@ Interactive Modifiers can place a CHOAM terminal at a trade post's shipped posit
 
 ## Current Story Maps
 
+The Halloween activity appears as **Wreck of the Hieronymus**
+(`CB_Halloween_Event_Shipwreck_01`). Its Director configuration preserves the
+native event contract of one party with up to four players; it is not a
+one-player-only instance. If a party member is sent back to Overland, collect
+the exact timestamp, Director request/refusal, map readiness, installed Console
+version, and game build before changing configuration. The native capacity
+settings alone do not prove an in-game co-op attempt succeeded.
+
 Patch 1.5 introduced the connected story maps **Arrakeen Spaceport & Zanovar** (`CB_Story_DestroyedZanovar`) and **Sardaukar Orbital Monitor** (`CB_Story_OrbitalMonitor`). The first internal map contains both the Spaceport and Zanovar portions of the story; progression transfers the player to the Orbital Monitor map.
 
 ## Deep Desert Layouts

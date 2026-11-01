@@ -8,7 +8,7 @@ Choose the incoming policy: accept all, block incoming transfers, accept from pr
 
 The **Free Transfers** options describe transfers to or from this server. They do not override a blocked direction. Leave advanced timeout and source-deletion options unchanged unless you understand their effect.
 
-Save the settings. Applying them restarts the Director so it reloads the rules; schedule the change when a brief interruption to login or travel coordination is acceptable.
+Save the settings. The Console persists them and applies them through Director's live settings interface, then checks the effective values. This does not restart Director or other services. If the Console reports that settings were saved but live application could not be confirmed, keep the error and retry after checking Director's health; do not assume that a saved value is already active.
 
 These are the server's acceptance rules, not a guarantee that Funcom permits a particular character, account, or source-to-destination route. If a transfer fails, record both servers, the transfer direction, the exact error and time; do not delete the original character as a troubleshooting step.
 

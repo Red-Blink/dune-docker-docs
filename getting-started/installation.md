@@ -14,6 +14,8 @@ Do not run the installer as root or prefix it with sudo. The [GitHub README](htt
 
 ## What Happens Next
 
+The installer asks which **Web UI port** to use, normally `8088`. It preserves an existing configured port when updating through supported tools. If your user needs Docker-group membership, the installer can finish using its supported privilege path; reconnect afterward to activate the new membership in your own terminal. It does not log you out and back in automatically.
+
 1. Open the Console URL printed by the installer, normally on port `8088`.
 2. Sign in with the generated administrator password.
 3. Complete the guided setup with your Funcom token and server choices.

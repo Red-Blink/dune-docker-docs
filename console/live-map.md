@@ -6,6 +6,8 @@ The Live Map renders selected Hagga Basin or Deep Desert partitions with live an
 
 Available layers can include online players, bases, vehicles, spice/resource fields, static resources, caves, ecological labs, POIs, trainers, vendors, fortresses, hazards, and other marker types present in the game data. Empty categories are hidden. Save browser-specific default visibility through the Layers settings.
 
+Regis Tanks use their own icon in the vehicle layers and on the map. Expand or collapse a layer group with its **+ / −** control; changing a layer's visibility does not enable or spawn a vehicle.
+
 Deep Desert coordinates include their A1–I9 sector where applicable. Vehicles that are traveling, backed up, or awaiting recovery are labeled from their recorded lifecycle state instead of being presented as spawned in a nonexistent partition.
 
 ## Actions

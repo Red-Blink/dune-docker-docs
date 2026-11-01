@@ -1,6 +1,6 @@
 # Server Custom Settings
 
-Reviewed against Console v1.4.47 behavior, October 2026.
+Reviewed against Console v1.4.59 behavior, November 2026.
 
 Use **Maps → Interactive Modifiers → Custom Settings**. Select the intended target, edit the supported controls, save, and follow the restart prompt. Use **Global** for Battlegroup-wide settings.
 

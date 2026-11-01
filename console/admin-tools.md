@@ -17,6 +17,8 @@ Care Packages bundle grants for manual delivery or automatic rules such as first
 
 Enabling an automatic rule also enables its parent Care Package so the rule cannot appear configured while delivery is globally disabled. If every rule is turned off, the parent toggle keeps its previous state.
 
+**Grant History** shows the completion time, player, package, and succeeded/failed results. Open **Details** to inspect each action and its error without expanding the whole page. A partially successful package is not a complete failure; review which actions succeeded before retrying. Older records without per-action results can show **Unknown** rather than invented counts.
+
 {% hint style="info" %}
 Grant requirements differ by item type. Live grants may require the player online; database-backed schematics, augments, or repair actions may require the player offline. The Console labels the required state.
 {% endhint %}

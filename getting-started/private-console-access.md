@@ -54,7 +54,10 @@ runtime/scripts/dune console restart
 ```
 
 {% hint style="warning" %}
-Restarting the Console signs out active Console browser sessions. It does not restart the Battlegroup, game maps, database, Director, Gateway, or Autoscaler.
+The Console is briefly unavailable while it is replaced. Valid persisted
+browser sessions can survive replacement; sign in again if your session has
+expired or the credentials/session format changed. This operation does not
+restart the Battlegroup, game maps, database, Director, Gateway, or Autoscaler.
 {% endhint %}
 
 ## 4. Publish it privately with Tailscale Serve
