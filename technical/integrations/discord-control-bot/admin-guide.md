@@ -71,7 +71,7 @@ Use health to confirm the Console adapter has role mapping loaded:
 
 ```bash
 curl -i \
-  -H 'Authorization: Bearer local-dev-bot-api' \
+  -H "Authorization: Bearer ${DUNE_API_KEY}" \
   http://127.0.0.1:8088/api/integrations/discord/health
 ```
 
