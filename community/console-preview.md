@@ -12,4 +12,6 @@ The preview uses fictional sample data. Some values and details are simplified o
 
 Server management actions are disabled. You cannot restart services, change a real player's inventory, initialize a database, install an addon, upload a backup, or submit a real translation correction from the preview. An enabled-looking control is not permission to carry out an operation against a real server.
 
+The preview's web server blocks management API requests as well as disabling controls in the interface. Language, map-layer, and navigation preferences may be saved in your browser; they do not change a server. Do not enter real credentials or paste private server data into the preview.
+
 Ready to host your own world? Follow [Requirements](../getting-started/requirements.md) and [Installation](../getting-started/installation.md).

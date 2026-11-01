@@ -1,0 +1,25 @@
+# Local state must not enter this public documentation repository.
+.env
+.env.*
+!.env.example
+!.env.sample
+!.env.template
+.ssh/
+.aws/
+.codex/
+.claude/
+node_modules/
+runtime/
+scratch/
+secrets/
+*.pem
+*.key
+*.p12
+*.pfx
+*.sqlite
+*.sqlite3
+*.db
+*.dump
+*.sql
+*.log
+*.bak
