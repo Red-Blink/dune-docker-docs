@@ -12,7 +12,7 @@ The browser Console is organized into three groups.
 
 The header's language icon opens [Languages and Translation Corrections](languages.md); it is separate from the sidebar pages. **Requests**, **Report Issues**, and **Get Help** open external project services and are marked with an external-link icon.
 
-The palette button beside the language control offers **Default** and 19 project themes. Theme and language choices are browser preferences; they do not change the server or another administrator's browser.
+The palette button beside the language control offers **Default** and 65 palettes in four groups: Console palettes, Dune factions, Houses, and Outfits and dyes. Filter by a palette or group name. Names stay on one line when selected; hover over a shortened name to read it in full. Theme and language choices are browser preferences; they do not change the server or another administrator's browser.
 
 These pages describe current development as well as released behavior. If a page is missing from your installation, check **Updates** and the release notes. The public preview follows current `main`; features awaiting a release are identified as such.
 

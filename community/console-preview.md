@@ -10,6 +10,8 @@ Browse the dashboard, Server Control, players and inventories, guilds, bases, ve
 
 The preview uses fictional sample data. Some values and details are simplified or not fully populated, and its displayed version identifies the interface being demonstrated. It is not a live community server, and it does not connect to your installation.
 
+The current preview is similar to [Console v1.4.65](https://github.com/Red-Blink/dune-awakening-selfhost-docker/releases/tag/v1.4.65), including the grouped palette picker and Chat page. Its sample records and simplified details are for exploration, not an exact copy of a live server.
+
 The preview follows the Console's current `main` branch, including changes awaiting the next release. It excludes unmerged features. A preview label does not mean a new Console release has been published.
 
 Server management actions are disabled. You cannot restart services, change a real player's inventory, initialize a database, install an addon, upload a backup, or submit a real translation correction from the preview. An enabled-looking control is not permission to carry out an operation against a real server.
