@@ -37,6 +37,7 @@
 * [Console Overview](console/overview.md)
 * [Languages and Translation Corrections](console/languages.md)
 * [Server Control, Logs, and Health](console/server-operations.md)
+* [Chat History](console/chat.md)
 * [Maps, Sietches, and Deep Desert](console/maps-and-sietches.md)
 * [Players and Guilds](console/players-and-guilds.md)
   * [Deleted Characters and Abandoned Assets](technical/console/deleted-characters.md)

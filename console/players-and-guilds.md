@@ -17,6 +17,14 @@ The player's Bases and Vehicles tabs initially show owned assets. Use **Permissi
 
 The Halloween 2026 suit, two plague doctor masks, and swatch use the supported direct customization unlock flow and require the player fully offline. Other cosmetic entries can have inventory-token or entitlement requirements. Follow the per-entry result instead of treating a request as proof of ownership.
 
+## PvP and Combat History
+
+Use **Players → PvP** for the leaderboard and recent kills, or a character's **Combat** view for their own statistics. Choose **Top 10**, **Top 20**, **Top 50**, or **All** for leaderboard rows, and independently choose how many recent kills to display.
+
+The history combines available events across the Battlegroup's Sietches and Deep Desert. It identifies the attacker and victim when the game records a usable player-death event. Downing a player alone is not counted as a confirmed death. Self-deaths are separate and do not affect PvP K/D; unavailable or already removed game events cannot be reconstructed.
+
+The PvP view is hidden when every partition is confirmed PvE and no recorded PvP history exists. A PvP partition, retained history, unknown configuration, or a pending mode change keeps it available rather than hiding potentially relevant records.
+
 ## Repairs and Recovery
 
 Targeted repair actions address known inconsistent game records without blindly resetting unrelated progression. These include faction/progression repairs, gear checks, Landsraad **Repair Quests**, and deleted-character recovery when recoverable database data still exists.

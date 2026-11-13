@@ -10,6 +10,8 @@ Browse the dashboard, Server Control, players and inventories, guilds, bases, ve
 
 The preview uses fictional sample data. Some values and details are simplified or not fully populated, and its displayed version identifies the interface being demonstrated. It is not a live community server, and it does not connect to your installation.
 
+The preview follows the Console's current `main` branch, including changes awaiting the next release. It does not include the three unmerged authentication and Discord PRs. A preview label does not mean a new Console release has been published.
+
 Server management actions are disabled. You cannot restart services, change a real player's inventory, initialize a database, install an addon, upload a backup, or submit a real translation correction from the preview. An enabled-looking control is not permission to carry out an operation against a real server.
 
 The preview's web server blocks management API requests as well as disabling controls in the interface. Language, map-layer, and navigation preferences may be saved in your browser; they do not change a server. Do not enter real credentials or paste private server data into the preview.

@@ -19,3 +19,15 @@ The Base Builder is a planning aid. Game updates, missing assets, terrain, stabi
 {% endhint %}
 
 [Open Dune Docker Base Builder](https://blueprints.dunedocker.app/)
+
+## Solo Blueprint Installer
+
+The website also provides the signed **Dune Blueprint Installer 0.2.7** for Windows 10/11 x64. It works with supported Retail Solo saves and needs Microsoft Edge WebView2 Runtime. Docker and administrator privileges are not required.
+
+For an import, download a **game-ready Blueprint JSON**, fully exit the game and wait for Steam Cloud synchronization, then select your Solo character and Blueprint. Import delivers the Blueprint to the character's backpack; it does not place the base in the world or grant DLC ownership. Keep a free inventory slot and a separate save backup.
+
+If a newly created character is missing, enter Solo, save and exit normally, then refresh. **Browse Save** can select its `game.db` below `%LOCALAPPDATA%\DuneSandbox\Saved\Cloud\PlayerClientStorage\FLS_retail`. Unknown save schemas remain blocked rather than being modified speculatively.
+
+To export, choose **Export Base** in the character card, select a base and choose **Export JSON**. The export contains supported building pieces and placeables, with relative positions and native rotations. It excludes stored inventory, player progress, ownership identifiers and global coordinates. Unsupported pieces or shield variants can prevent export rather than silently producing a broken layout. The source save is not replaced.
+
+The installer checks for updates on startup and every six hours. **About → Check for Updates** checks manually; an available update opens the official download in your browser. It never replaces itself automatically. Versions older than the notification feature need a manual upgrade first. Previews require internet access for models, while local save operations do not upload the save or Blueprint.

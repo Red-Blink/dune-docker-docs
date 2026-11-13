@@ -13,3 +13,9 @@ Depending on enabled features, a player can see character and Sietch information
 - Private Live Map publication is independently controlled and must not expose another player's private location or activity.
 
 This distinction allows an owner to publish a server listing while keeping all player data local.
+
+## Map Freshness
+
+World layers must come from a recent server snapshot. When the snapshot is missing, older than three minutes, or belongs to an expired Deep Desert cycle, the portal shows **Awaiting Server Sync** and withholds stale world markers, seed and countdown. It checks more frequently while waiting for a fresh upload.
+
+The countdown clears the old world layers at cycle rollover. Static spice spawn locations indicate possible locations, not proof that a large spice blow is currently active. Decoded positions are approximate. The portal's map and the Console's terrain renderer are separate interfaces; a fresh snapshot does not turn the portal into the Console's 3D terrain view.

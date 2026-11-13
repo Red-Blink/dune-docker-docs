@@ -32,6 +32,8 @@ To move an existing Funcom Hyper-V server, follow [Migrate a Hyper-V Database](.
 
 A database backup contains game data but not the host configuration. Use **System Backups (Encrypted)** when moving or rebuilding an entire Dune Docker installation. A system backup contains a fresh database dump together with `.env`, `runtime/generated`, and `runtime/secrets`, including the Funcom token and Console credentials.
 
+This is not a full VPS or disk image. It does not archive the downloaded game images/files, Docker image and build caches, operating system, arbitrary host files or every existing backup archive. Install the required game files on the destination and restore the installation state through the supported restore flow. Keep separate copies of any unrelated host data you need.
+
 Choose a strong passphrase and keep it somewhere separate from the archive. The passphrase cannot be recovered by the project. The Console can create, download, import, preview, and restore these archives without buffering a multi-gigabyte upload in memory.
 
 On a new host, the first-run wizard can install the required game files and restore a system backup before the Battlegroup is started. A restore previews its effects first, preserves the replaced local state in a safety copy, restores the database and configuration, starts the restored Battlegroup, and reloads the Console. A restore launched later from the Backups page instead leaves Dune services stopped for you to start from Server Control after reviewing the result.

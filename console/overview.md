@@ -4,13 +4,17 @@ The browser Console is organized into three groups.
 
 | Group | Pages |
 |---|---|
-| Server Operations | Home, Server Control, Backups, Database, Updates, Logs, Settings |
+| Server Operations | Home, Server Control, Backups, Database, Updates, Logs, Chat, Settings |
 | Arrakis Management | Maps, Players, Guilds, Bases, Vehicles, Exchange, Live Map, Landsraad, Admin Tools, Care Package |
 | Community | Addons |
 
 **Home** is the best starting point for current health, readiness, version information, server actions, and first-run status. Other pages focus on a single responsibility and show confirmations before disruptive or destructive actions.
 
 The header's language icon opens [Languages and Translation Corrections](languages.md); it is separate from the sidebar pages. **Requests**, **Report Issues**, and **Get Help** open external project services and are marked with an external-link icon.
+
+The palette button beside the language control offers **Default** and 19 project themes. Theme and language choices are browser preferences; they do not change the server or another administrator's browser.
+
+These pages describe current development as well as released behavior. If a page is missing from your installation, check **Updates** and the release notes. The public preview follows current `main`; features awaiting a release are identified as such.
 
 Before installing, [explore the Console with sample data](../community/console-preview.md).
 
